@@ -1,0 +1,6 @@
+{
+  "name": "Welcome Back To Single Company",
+  "description": "A funny, futuristic prank website for verified singles with interactive login, single info form, simulated biometric scanner, and prank wallet.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
