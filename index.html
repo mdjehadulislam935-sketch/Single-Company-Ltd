@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Welcome Back To Single Company</title>
-  <meta name="description" content="Welcome Back To Single Company - প্রফেশনাল সিঙ্গেল ভেরিফিকেশন ও এন্টারটেইনমেন্ট পোর্টাল" />
-  <meta property="og:title" content="Welcome Back To Single Company" />
-  <meta property="og:description" content="সিঙ্গেল কোম্পানি - ১০০% ভেরিফাইড সিঙ্গেলদের নিরাপদ আশ্রয় ও ফানি প্র্যাংক পোর্টাল" />
+  <title>Welcome Back To Single Company Ltd</title>
+  <meta name="description" content="Welcome Back To Single Company Ltd - প্রফেশনাল সিঙ্গেল ভেরিফিকেশন ও এন্টারটেইনমেন্ট পোর্টাল" />
+  <meta property="og:title" content="Welcome Back To Single Company Ltd" />
+  <meta property="og:description" content="সিঙ্গেল কোম্পানি লিমিটেড - ১০০% ভেরিফাইড সিঙ্গেলদের নিরাপদ আশ্রয় ও ফানি প্র্যাংক পোর্টাল" />
   <meta name="theme-color" content="#080b14" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -336,6 +336,237 @@
       opacity: 0.8;
     }
 
+    /* Name & Photo Upload Beside Each Other */
+    .name-photo-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    .name-col {
+      flex: 1;
+      min-width: 0;
+    }
+    .photo-upload-col {
+      width: 76px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .photo-upload-box {
+      width: 72px;
+      height: 72px;
+      border-radius: 14px;
+      background: rgba(9, 13, 26, 0.9);
+      border: 2px dashed rgba(0, 240, 255, 0.45);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 240, 255, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+    }
+    .photo-upload-box:hover {
+      border-color: var(--cyan);
+      border-style: solid;
+      box-shadow: 0 0 18px rgba(0, 240, 255, 0.5);
+      transform: translateY(-2px);
+    }
+    .photo-upload-box.has-photo {
+      border-style: solid;
+      border-color: var(--green);
+      box-shadow: 0 0 16px rgba(0, 255, 136, 0.45);
+    }
+    .photo-upload-box.is-skipped {
+      opacity: 0.5;
+      border-color: rgba(255, 255, 255, 0.2);
+      border-style: dotted;
+      filter: grayscale(0.7);
+    }
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      pointer-events: none;
+    }
+    .photo-placeholder-icon {
+      font-size: 22px;
+      filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.5));
+    }
+    .photo-placeholder-text {
+      font-size: 9.5px;
+      color: var(--cyan);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .photo-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 12px;
+    }
+    .photo-remove-btn {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 0, 122, 0.9);
+      color: #fff;
+      border-radius: 50%;
+      border: 1.5px solid #fff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 900;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.15s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }
+    .photo-remove-btn:hover {
+      transform: scale(1.15);
+      background: #ff007a;
+    }
+
+    /* Skip Photo Tickmark Box (Underneath Photo Upload) */
+    .skip-photo-container {
+      margin-top: 2px;
+      margin-bottom: 14px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      border-radius: 12px;
+      padding: 9px 13px;
+      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      user-select: none;
+    }
+    .skip-photo-container:hover {
+      border-color: rgba(0, 240, 255, 0.45);
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+    }
+    .skip-photo-container.checked {
+      background: rgba(0, 240, 255, 0.1);
+      border-color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
+    }
+    .skip-checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .custom-tick-box {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: rgba(9, 13, 26, 0.95);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+      color: transparent;
+      flex-shrink: 0;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .skip-photo-container.checked .custom-tick-box {
+      background: linear-gradient(135deg, var(--cyan), #0070f3);
+      border-color: #ffffff;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+      transform: scale(1.05);
+    }
+    .skip-label-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: 0.2px;
+    }
+    .skip-hint-text {
+      font-size: 11.5px;
+      color: #94a3b8;
+      margin-top: 4px;
+      padding-left: 32px;
+      line-height: 1.4;
+    }
+    .skip-hint-highlight {
+      color: var(--yellow);
+      font-weight: 700;
+    }
+
+    /* Login Gender Selector on Page 1 */
+    .login-gender-toggle-wrap {
+      width: 100%;
+      margin-bottom: 16px;
+      background: rgba(14, 20, 36, 0.85);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 10px 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+    }
+    .login-gender-label {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .login-gender-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .login-gender-btn {
+      background: rgba(14, 20, 36, 0.75);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 9px 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #94a3b8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: none;
+      outline: none;
+    }
+    .login-gender-btn:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+    }
+    .login-gender-btn.active-male {
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.14);
+      color: #00f0ff;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
+    }
+    .login-gender-btn.active-female {
+      border-color: var(--magenta);
+      background: rgba(255, 0, 122, 0.15);
+      color: #ff2d88;
+      box-shadow: 0 0 10px rgba(255, 0, 122, 0.3);
+    }
+
     /* 3D Buttons */
     .btn-3d {
       width: 100%;
@@ -471,6 +702,20 @@
       background: rgba(0, 240, 255, 0.15);
       color: #fff;
       box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+    }
+    .gender-card.selected[data-gender="মহিলা"],
+    .gender-card.selected.female-mode {
+      border-color: var(--magenta);
+      background: rgba(255, 0, 122, 0.18);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(255, 0, 122, 0.4);
+    }
+    .gender-card.selected[data-gender="হিজড়া"],
+    .gender-card.selected.hijra-mode {
+      border-color: #a855f7;
+      background: rgba(168, 85, 247, 0.18);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(168, 85, 247, 0.4);
     }
 
     /* Reasons List */
@@ -1511,6 +1756,15 @@
       font-size: 34px;
       box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
       flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .id-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 14px;
     }
     .id-details {
       flex: 1;
@@ -1928,7 +2182,7 @@
       <div class="brand-pill">
         <div class="brand-icon">⚡</div>
         <div>
-          <div class="brand-text">SINGLE COMPANY</div>
+          <div class="brand-text">SINGLE COMPANY LTD</div>
           <div class="brand-sub">PORTAL v3.0 • VERIFIED</div>
         </div>
       </div>
@@ -1943,14 +2197,29 @@
     <main id="page1" class="page-section active">
       <div class="rgb-card-wrapper">
         <div class="rgb-card-inner">
-          <div class="hero-badge">🚨 সতর্কতা: বিবাহিতদের প্রবেশ নিষেধ</div>
-          <h1 class="main-title">Welcome Back To<br>Single Company</h1>
+          <div class="hero-badge" id="loginHeroBadge">🚨 সতর্কতা: বিবাহিতদের প্রবেশ নিষেধ</div>
+          <h1 class="main-title">Welcome Back To<br>Single Company Ltd</h1>
           <p class="sub-title">আজীবন শান্তির পথপ্রদর্শক • বিশ্বস্ত সিঙ্গেল নেটওয়ার্ক</p>
 
-          <!-- Field 1: বউয়ের নাম -->
+          <!-- Login Role / Gender Switcher -->
+          <div class="login-gender-toggle-wrap">
+            <div class="login-gender-label">
+              <span>👤 আপনি কি ছেলে নাকি মেয়ে?</span>
+            </div>
+            <div class="login-gender-group">
+              <button type="button" class="login-gender-btn active-male" id="loginGenderMaleBtn" data-gender="পুরুষ">
+                <span>👨 আমি ছেলে (Boy)</span>
+              </button>
+              <button type="button" class="login-gender-btn" id="loginGenderFemaleBtn" data-gender="মহিলা">
+                <span>👩 আমি মেয়ে (Girl)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Field 1: বউয়ের / জামাইয়ের নাম -->
           <div class="form-group">
             <label class="field-label" for="wifeNameInput">
-              <span>১. বউয়ের নাম</span>
+              <span id="wifeNameLabelText">১. বউয়ের নাম (Wife's Name)</span>
               <span class="field-label-tag">আবশ্যিক</span>
             </label>
             <div class="input-3d-box" id="wifeNameBox">
@@ -1961,14 +2230,14 @@
                 autocomplete="off"
                 readonly
               />
-              <span class="input-icon">💍</span>
+              <span class="input-icon" id="wifeNameIcon">💍</span>
             </div>
           </div>
 
-          <!-- Field 2: বউয়ের নাম্বার -->
+          <!-- Field 2: বউয়ের / জামাইয়ের নাম্বার -->
           <div class="form-group">
             <label class="field-label" for="wifePhoneInput">
-              <span>২. বউয়ের নাম্বার</span>
+              <span id="wifePhoneLabelText">২. বউয়ের নাম্বার (Wife's Phone)</span>
               <span class="field-label-tag">আবশ্যিক</span>
             </label>
             <div class="input-3d-box" id="wifePhoneBox">
@@ -1979,20 +2248,20 @@
                 autocomplete="off"
                 readonly
               />
-              <span class="input-icon">📱</span>
+              <span class="input-icon" id="wifePhoneIcon">📱</span>
             </div>
           </div>
 
           <!-- Normal Login Button (Will also trigger prank if clicked) -->
           <button id="prankLoginBtn" class="btn-3d btn-primary-3d">
-            <span>লগইন করুন</span>
+            <span id="prankLoginBtnText">লগইন করুন</span>
             <span>🔐</span>
           </button>
 
           <!-- Skip Button (As explicitly mandated) -->
           <button id="skipBtn" class="btn-3d btn-skip-3d">
-            <span>বউ না থাকলে Skip করুন</span>
-            <span>🏃💨</span>
+            <span id="skipBtnText">বউ না থাকলে Skip করুন</span>
+            <span id="skipBtnIcon">🏃💨</span>
           </button>
 
         </div>
@@ -2012,50 +2281,101 @@
           <p class="sub-title">নিখুঁত যাচাইয়ের জন্য তথ্য প্রদান করুন (মিথ্যা বলা নিষিদ্ধ)</p>
 
           <form id="singleInfoForm" onsubmit="return false;" style="width: 100%;">
-            <!-- Name Input -->
-            <div class="form-group">
-              <label class="field-label" for="userNameInput">
-                <span>আপনার নাম (Name)</span>
-              </label>
-              <div class="input-3d-box">
-                <input 
-                  type="text" 
-                  id="userNameInput" 
-                  placeholder="আপনার আসল নাম লিখুন..." 
-                  required
-                />
-                <span class="input-icon">👤</span>
+            <!-- Name & Photo Upload Beside Each Other -->
+            <div class="name-photo-row">
+              <div class="name-col">
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="field-label" for="userNameInput">
+                    <span>আপনার নাম (Name)</span>
+                  </label>
+                  <div class="input-3d-box">
+                    <input 
+                      type="text" 
+                      id="userNameInput" 
+                      placeholder="আপনার আসল নাম লিখুন..." 
+                      required
+                    />
+                    <span class="input-icon">👤</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Profile Picture Upload Beside Name -->
+              <div class="photo-upload-col">
+                <label class="field-label" style="justify-content: center; margin-bottom: 5px;">
+                  <span>ছবি (Photo)</span>
+                </label>
+                <div class="photo-upload-box" id="photoUploadBox" title="ছবি আপলোড করতে ক্লিক বা ট্যাপ করুন">
+                  <input type="file" id="userPhotoInput" accept="image/*" style="display: none;" />
+                  <div class="photo-placeholder" id="photoPlaceholder">
+                    <span class="photo-placeholder-icon">📸</span>
+                    <span class="photo-placeholder-text">ছবি দিন</span>
+                  </div>
+                  <img id="photoPreviewImg" src="" alt="Profile Photo" class="photo-preview-img" style="display: none;" />
+                  <button type="button" class="photo-remove-btn" id="photoClearBtn" title="ছবি সরান">✕</button>
+                </div>
               </div>
             </div>
 
-            <!-- Wife: আছে / নাই -->
+            <!-- Skip Photo Checkmark Option directly under Photo Upload -->
+            <div class="skip-photo-container" id="skipPhotoContainer" role="button" tabindex="0" title="ছবি আপলোড না করে স্কিপ করতে এখানে টিক দিন">
+              <div class="skip-checkbox-row">
+                <div class="custom-tick-box" id="customTickBox">✓</div>
+                <input type="checkbox" id="skipPhotoCheck" style="display: none;" />
+                <span class="skip-label-text">ছবি আপলোড স্কিপ করুন (Skip Photo) ⏩</span>
+              </div>
+              <div class="skip-hint-text" id="skipPhotoHintText">
+                *ছবি স্কিপ করলে সিঙ্গেল আইডিতে অটোমেটিক <span class="skip-hint-highlight">পুরুষ: 🤵‍♂️ / মহিলা: 🤵‍♀️</span> ইমোজি বসবে
+              </div>
+            </div>
+
+            <!-- Gender Selection (Prominently placed to dynamically control form logic) -->
             <div class="form-group">
               <label class="field-label">
-                <span>Wife:</span>
+                <span>লিঙ্গ (Gender)</span>
+                <span class="field-label-tag" id="genderSelectedTag">পুরুষ</span>
+              </label>
+              <div class="gender-group">
+                <div class="gender-card selected" data-gender="পুরুষ" id="genderCardMale">
+                  <span>👨 পুরুষ</span>
+                </div>
+                <div class="gender-card" data-gender="মহিলা" id="genderCardFemale">
+                  <span>👩 মহিলা</span>
+                </div>
+                <div class="gender-card" data-gender="হিজড়া" id="genderCardHijra">
+                  <span>🌈 হিজড়া</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Wife / Husband: আছে / নাই -->
+            <div class="form-group">
+              <label class="field-label">
+                <span id="partnerStatusLabel">১. Wife (বউ) আছে?</span>
                 <span id="wifeStatusTag" class="field-label-tag" style="display: none;">নাই (ভেরিফাইড)</span>
               </label>
               <div class="toggle-group">
                 <div class="toggle-option" id="wifeYesBtn">
-                  <span>আছে 👰</span>
+                  <span id="wifeYesBtnText">আছে 👰</span>
                 </div>
                 <div class="toggle-option" id="wifeNoBtn">
-                  <span>নাই 🕊️</span>
+                  <span id="wifeNoBtnText">নাই 🕊️</span>
                 </div>
               </div>
             </div>
 
-            <!-- GF: আছে / নাই -->
+            <!-- GF / BF: আছে / নাই -->
             <div class="form-group">
               <label class="field-label">
-                <span>GF:</span>
+                <span id="crushStatusLabel">২. Girlfriend (GF) আছে?</span>
                 <span id="gfStatusTag" class="field-label-tag" style="display: none;">নাই (নিরাপদ)</span>
               </label>
               <div class="toggle-group">
                 <div class="toggle-option" id="gfYesBtn">
-                  <span>আছে 💖</span>
+                  <span id="gfYesBtnText">আছে 💖</span>
                 </div>
                 <div class="toggle-option" id="gfNoBtn">
-                  <span>নাই 🙅‍♂️</span>
+                  <span id="gfNoBtnText">নাই 🙅‍♂️</span>
                 </div>
               </div>
             </div>
@@ -2077,66 +2397,13 @@
               </div>
             </div>
 
-            <!-- Gender Selection -->
+            <!-- Reason for Single (Dynamically populated with gender-tailored options) -->
             <div class="form-group">
               <label class="field-label">
-                <span>লিঙ্গ (Gender)</span>
-              </label>
-              <div class="gender-group">
-                <div class="gender-card" data-gender="পুরুষ">
-                  <span>👨 পুরুষ</span>
-                </div>
-                <div class="gender-card" data-gender="মহিলা">
-                  <span>👩 মহিলা</span>
-                </div>
-                <div class="gender-card" data-gender="হিজড়া">
-                  <span>🌈 হিজড়া</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Reason for Single (Full requested options) -->
-            <div class="form-group">
-              <label class="field-label">
-                <span>সিঙ্গেল থাকার কারণ (Reason for Single)</span>
+                <span id="reasonsSectionLabel">সিঙ্গেল থাকার কারণ (Reason for Single)</span>
               </label>
               <div class="reasons-list" id="reasonsContainer">
-                <div class="reason-item" data-reason="টাকা নাই 😂">
-                  <span>টাকা নাই 😂</span>
-                  <div class="reason-radio"></div>
-                </div>
-                <div class="reason-item" data-reason="চেহারা দেখে সবাই ভাই ডাকে 😭">
-                  <span>চেহারা দেখে সবাই ভাই ডাকে 😭</span>
-                  <div class="reason-radio"></div>
-                </div>
-                <div class="reason-item" data-reason="প্রেম করতে ভয় লাগে 💔">
-                  <span>প্রেম করতে ভয় লাগে 💔</span>
-                  <div class="reason-radio"></div>
-                </div>
-                <div class="reason-item" data-reason="Crush অন্যের সাথে চলে গেছে 🏃‍♀️💨">
-                  <span>Crush অন্যের সাথে চলে গেছে 🏃‍♀️💨</span>
-                  <div class="reason-radio"></div>
-                </div>
-                <div class="reason-item" data-reason="বিয়ে করার বয়স হয়নি 👶">
-                  <span>বিয়ে করার বয়স হয়নি 👶</span>
-                  <div class="reason-radio"></div>
-                </div>
-                <div class="reason-item" data-reason="বিয়ে করার টাকা নেই 💸">
-                  <span>বিয়ে করার টাকা নেই 💸</span>
-                  <div class="reason-radio"></div>
-                </div>
-                <div class="reason-item" data-reason="ভাগ্যে প্রেম নাই, শুধু বেদনা 🥀">
-                  <span>ভাগ্যে প্রেম নাই, শুধু বেদনা 🥀</span>
-                  <div class="reason-radio"></div>
-                </div>
-                <div class="reason-item" data-reason="পড়ালেখা আর ক্যারিয়ার নিয়ে ব্যস্ত (মিথ্যা অজুহাত) 🤓">
-                  <span>পড়ালেখা আর ক্যারিয়ার নিয়ে ব্যস্ত 🤓</span>
-                  <div class="reason-radio"></div>
-                </div>
-                <div class="reason-item" data-reason="অতিরিক্ত ইনোসেন্ট ও ভদ্র 😇">
-                  <span>অতিরিক্ত ইনোসেন্ট ও ভদ্র 😇</span>
-                  <div class="reason-radio"></div>
-                </div>
+                <!-- Dynamically rendered by JavaScript -->
               </div>
             </div>
 
@@ -2201,7 +2468,7 @@
         <div class="id-hologram-strip"></div>
         <div class="id-header">
           <div>
-            <div class="id-logo-title">SINGLE COMPANY MEMBER</div>
+            <div class="id-logo-title">SINGLE COMPANY LTD MEMBER</div>
             <div style="font-size: 10px; color: var(--cyan); letter-spacing: 1px;">OFFICIAL CERTIFIED SINGLE</div>
           </div>
           <div class="id-serial" id="cardMemberId">#SC-2026-7894</div>
@@ -2265,10 +2532,10 @@
         </div>
 
         <!-- Recent Prank Transactions -->
-        <div style="font-size: 12px; font-weight: 700; color: #94a3b8; margin-bottom: 8px;">
+        <div id="transactionsHeaderLabel" style="font-size: 12px; font-weight: 700; color: #94a3b8; margin-bottom: 8px;">
           সাম্প্রতিক সেভিংস ট্রানজ্যাকশন হিস্ট্রি:
         </div>
-        <div class="transactions-list">
+        <div class="transactions-list" id="transactionsListContainer">
           <div class="transaction-item">
             <div class="tx-left">
               <span class="tx-icon">📱</span>
@@ -2317,10 +2584,10 @@
 
       <!-- FUN PRANK RADAR: Emergency Crush Finder -->
       <div class="radar-box">
-        <div style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;">
+        <div id="radarSectionTitle" style="font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;">
           🛰️ জরুরি ক্রাশ/প্রেমিকা ডিটেক্টর
         </div>
-        <div style="font-size: 12px; color: #94a3b8;">
+        <div id="radarSectionSub" style="font-size: 12px; color: #94a3b8;">
           ১০ কিমি এলাকার মধ্যে প্রেমিকা স্ক্যান করা হচ্ছে...
         </div>
         <div class="radar-display">
@@ -2328,7 +2595,7 @@
           <div class="radar-center-blip"></div>
         </div>
         <button id="scanCrushBtn" class="btn-3d btn-primary-3d" style="font-size: 13.5px; padding: 10px;">
-          <span>রাডার স্ক্যান চালু করুন 📡</span>
+          <span id="scanCrushBtnText">রাডার স্ক্যান চালু করুন 📡</span>
         </button>
       </div>
 
@@ -2383,7 +2650,7 @@
           </div>
         </div>
         <div class="dev-tags">
-          <span class="dev-tag tag-gold">⚡ Single Company Founder</span>
+          <span class="dev-tag tag-gold">⚡ Single Company Ltd Founder</span>
           <span class="dev-tag tag-cyan">💎 Neon Glass Master</span>
           <span class="dev-tag tag-pink">🔥 100% Single Special Edition</span>
         </div>
@@ -2413,7 +2680,7 @@
     <!-- Footer Disclaimer -->
     <footer class="app-footer">
       <div>⚠️ এটি বিনোদনমূলক ও মজার উদ্দেশ্যে তৈরি প্র্যাংক প্ল্যাটফর্ম।</div>
-      <div style="margin-top: 4px;">Single Company Ecosystem © 2026. Designed & Developed by <strong>M D Jihadul Islam Sojib</strong>.</div>
+      <div style="margin-top: 4px;">Single Company Ltd Ecosystem © 2026. Designed & Developed by <strong>M D Jihadul Islam Sojib</strong>.</div>
     </footer>
 
   </div>
@@ -2467,8 +2734,8 @@
 
       <!-- VIEW 3: Rejection Result Card (Comedic fail) -->
       <div id="proposalRejectView" class="proposal-reject-box" style="display: none;">
-        <div class="reject-emoji-banner">💔🤦‍♂️</div>
-        <div class="reject-title">প্রস্তাব সরাসরি প্রত্যাখ্যাত!</div>
+        <div class="reject-emoji-banner" id="rejectEmojiBanner">💔🤦‍♂️</div>
+        <div class="reject-title" id="rejectTitle">প্রস্তাব সরাসরি প্রত্যাখ্যাত!</div>
         <div class="reject-target-girl" id="rejectGirlTarget">টার্গেট: সুমাইয়া আক্তার রিয়া (১.২ কিমি)</div>
         
         <div class="reject-speech-bubble" id="rejectSpeechBubble">
@@ -2477,17 +2744,17 @@
 
         <div class="reject-meta-box">
           <div>📉 ম্যাচিং স্কোর: <strong style="color:#ff3366;">-১০০%</strong></div>
-          <div>🚫 সম্পর্কের ভবিষ্যৎ: <strong style="color:#ffd700;">ফ্রেন্ডজোন / ভাইয়া-জোন</strong></div>
+          <div>🚫 সম্পর্কের ভবিষ্যৎ: <strong style="color:#ffd700;" id="rejectFutureText">ফ্রেন্ডজোন / ভাইয়া-জোন</strong></div>
           <div>💔 স্ট্যাটাস: <strong style="color:#a7f3d0;">সিঙ্গেল থাকাই মঙ্গল</strong></div>
           <div>⏱️ সিদ্ধান্ত: <strong style="color:#00f0ff;">তাৎক্ষণিক বাতিল</strong></div>
         </div>
 
         <div class="reject-actions">
           <button id="tryAnotherGirlBtn" class="btn-3d btn-primary-3d">
-            <span>অন্য কাউকে প্রপোজ করে ট্রাই করুন 🔄</span>
+            <span id="tryAnotherBtnText">অন্য কাউকে প্রপোজ করে ট্রাই করুন 🔄</span>
           </button>
           <button id="closeRejectModalBtn" class="btn-3d btn-outline-3d">
-            <span>সিঙ্গেল থাকাই ভালো, শান্তিতে আছি 🗿</span>
+            <span id="closeRejectBtnText">সিঙ্গেল থাকাই ভালো, শান্তিতে আছি 🗿</span>
           </button>
         </div>
       </div>
@@ -2502,7 +2769,7 @@
       <div class="gateway-header">
         <div class="gateway-title">
           <span>⚡</span>
-          <span>সিঙ্গেল পে™ ক্যাশআউট গেটওয়ে</span>
+          <span id="gatewayTitleText">সিঙ্গেল পে™ ক্যাশআউট গেটওয়ে</span>
         </div>
         <button id="closeGatewayBtn" class="gateway-close-btn" title="বন্ধ করুন">✕</button>
       </div>
@@ -2515,7 +2782,7 @@
         <div class="simulated-badge">১০০% ট্যাক্স ফ্রি</div>
       </div>
 
-      <div style="font-size: 12.5px; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">
+      <div id="gatewaySubtitle" style="font-size: 12.5px; font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">
         টাকা পাঠানোর জন্য বিয়ের পরবর্তী আত্মীয় নির্বাচন করুন:
       </div>
 
@@ -2944,7 +3211,15 @@
       }
 
       // ==========================================
-      // PAGE 1: PRANK EVENTS
+      // GLOBAL GENDER & STATE DEFINITION
+      // ==========================================
+      let selectedGender = 'পুরুষ';
+      let selectedReason = null;
+      let selectedWife = null;
+      let selectedGf = null;
+
+      // ==========================================
+      // PAGE 1: PRANK EVENTS & GENDER TOGGLE
       // ==========================================
       const wifeNameInput = document.getElementById('wifeNameInput');
       const wifePhoneInput = document.getElementById('wifePhoneInput');
@@ -2952,27 +3227,36 @@
       const wifePhoneBox = document.getElementById('wifePhoneBox');
       const prankLoginBtn = document.getElementById('prankLoginBtn');
       const skipBtn = document.getElementById('skipBtn');
+      const loginGenderMaleBtn = document.getElementById('loginGenderMaleBtn');
+      const loginGenderFemaleBtn = document.getElementById('loginGenderFemaleBtn');
 
-      // Requirement: When user clicks/focuses "বউয়ের নাম", show: "বিয়ে করলে তো নাম পাবি 😂"
-      function triggerWifeNamePrank() {
-        playLaughSound();
-        showModal(
-          'প্র্যাংক অ্যালার্ট!',
-          'বিয়ে করলে তো নাম পাবি 😂',
-          '😂',
-          'আমার ভুল হয়েছে 🤦‍♂️'
-        );
+      // Connect Page 1 Gender Switchers
+      if (loginGenderMaleBtn) {
+        loginGenderMaleBtn.addEventListener('click', () => {
+          applyGenderTheme('পুরুষ');
+        });
+      }
+      if (loginGenderFemaleBtn) {
+        loginGenderFemaleBtn.addEventListener('click', () => {
+          applyGenderTheme('মহিলা');
+        });
       }
 
-      // Requirement: When user clicks/focuses "বউয়ের নাম্বার", show: "বিয়ে করলে তো নাম্বার পাবি 😂"
+      // Dynamic prank triggers based on selected gender
+      function triggerWifeNamePrank() {
+        playLaughSound();
+        const isFemale = (selectedGender === 'মহিলা');
+        const prankMsg = isFemale ? 'বিয়ে করলে তো জামাইয়ের নাম পাবি 😂' : 'বিয়ে করলে তো নাম পাবি 😂';
+        const btnMsg = isFemale ? 'আমার ভুল হয়েছে আপু 🤦‍♀️' : 'আমার ভুল হয়েছে 🤦‍♂️';
+        showModal('প্র্যাংক অ্যালার্ট!', prankMsg, '😂', btnMsg);
+      }
+
       function triggerWifePhonePrank() {
         playLaughSound();
-        showModal(
-          'প্র্যাংক অ্যালার্ট!',
-          'বিয়ে করলে তো নাম্বার পাবি 😂',
-          '📱😂',
-          'মাফ চাই ভাই 😭'
-        );
+        const isFemale = (selectedGender === 'মহিলা');
+        const prankMsg = isFemale ? 'বিয়ে করলে তো জামাইয়ের নাম্বার পাবি 😂' : 'বিয়ে করলে তো নাম্বার পাবি 😂';
+        const btnMsg = isFemale ? 'মাফ চাই আপু 😭' : 'মাফ চাই ভাই 😭';
+        showModal('প্র্যাংক অ্যালার্ট!', prankMsg, '📱😂', btnMsg);
       }
 
       wifeNameBox.addEventListener('click', triggerWifeNamePrank);
@@ -2982,22 +3266,27 @@
 
       prankLoginBtn.addEventListener('click', () => {
         playBuzzSound();
-        showModal(
-          'অ্যাক্সেস ডিনাইড!',
-          'বউয়ের নাম ও নাম্বার ছাড়া তো লগইন হবে না! বিয়ে করে আয় আগে! 😂',
-          '🛑',
-          'বউ না থাকলে Skip করব'
-        );
+        const isFemale = (selectedGender === 'মহিলা');
+        const title = 'অ্যাক্সেস ডিনাইড!';
+        const msg = isFemale
+          ? 'জামাইয়ের নাম ও নাম্বার ছাড়া তো লগইন হবে না! বিয়ে করে জামাই জোগাড় কর আগে! 😂'
+          : 'বউয়ের নাম ও নাম্বার ছাড়া তো লগইন হবে না! বিয়ে করে আয় আগে! 😂';
+        const btnText = isFemale ? 'জামাই না থাকলে Skip করব' : 'বউ না থাকলে Skip করব';
+        showModal(title, msg, '🛑', btnText);
       });
 
       // Requirement: When Skip is clicked, show:
-      // "বউয়ের নাম & নাম্বার না দিয়ে Login করার জন্য ধন্যবা*শ 😂"
+      // "বউয়ের/জামাইয়ের নাম & নাম্বার না দিয়ে Login করার জন্য ধন্যবা*শ 😂"
       // Then show: "এগিয়ে যান" -> Clicking moves to Page 2
       skipBtn.addEventListener('click', () => {
         playSuccessChime();
+        const isFemale = (selectedGender === 'মহিলা');
+        const msg = isFemale
+          ? 'জামাইয়ের নাম & নাম্বার না দিয়ে Login করার জন্য ধন্যবাদ 😂'
+          : 'বউয়ের নাম & নাম্বার না দিয়ে Login করার জন্য ধন্যবা*শ 😂';
         showModal(
-          'স্বাগতম খাঁটি সিঙ্গেল!',
-          'বউয়ের নাম & নাম্বার না দিয়ে Login করার জন্য ধন্যবা*শ 😂',
+          isFemale ? 'স্বাগতম খাঁটি সিঙ্গেল কুইন!' : 'স্বাগতম খাঁটি সিঙ্গেল!',
+          msg,
           '🎉😂',
           'এগিয়ে যান ➡️',
           () => {
@@ -3021,21 +3310,221 @@
       const reasonItems = document.querySelectorAll('.reason-item');
       const submitInfoBtn = document.getElementById('submitInfoBtn');
 
-      let selectedWife = null;
-      let selectedGf = null;
-      let selectedGender = null;
-      let selectedReason = null;
+      // Picture Upload & Skip Setup
+      const photoUploadBox = document.getElementById('photoUploadBox');
+      const userPhotoInput = document.getElementById('userPhotoInput');
+      const photoPlaceholder = document.getElementById('photoPlaceholder');
+      const photoPreviewImg = document.getElementById('photoPreviewImg');
+      const photoClearBtn = document.getElementById('photoClearBtn');
+      const skipPhotoContainer = document.getElementById('skipPhotoContainer');
+      const skipPhotoCheck = document.getElementById('skipPhotoCheck');
 
-      // Wife: আছে / নাই toggle prank
+      let uploadedPhotoData = null;
+      let isPhotoSkipped = false;
+
+      function setPhotoSkippedState(skipped, notify = true) {
+        isPhotoSkipped = skipped;
+        if (skipPhotoCheck) skipPhotoCheck.checked = skipped;
+        if (skipped) {
+          skipPhotoContainer.classList.add('checked');
+          photoUploadBox.classList.add('is-skipped');
+          if (notify) {
+            playTone(550, 'sine', 0.08);
+            showToast('ছবি স্কিপ করা হয়েছে! মেম্বার কার্ডে 🤵‍♂️/🤵‍♀️ ইমোজি বসবে', '👌');
+          }
+        } else {
+          skipPhotoContainer.classList.remove('checked');
+          photoUploadBox.classList.remove('is-skipped');
+          if (notify) {
+            playTone(450, 'sine', 0.08);
+          }
+        }
+      }
+
+      // Click photo box to trigger file selection
+      if (photoUploadBox && userPhotoInput) {
+        photoUploadBox.addEventListener('click', () => {
+          userPhotoInput.click();
+        });
+
+        userPhotoInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          if (!file.type.startsWith('image/')) {
+            playBuzzSound();
+            showToast('দয়া করে সঠিক ছবি (JPG, PNG) নির্বাচন করুন!', '⚠️');
+            return;
+          }
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            uploadedPhotoData = event.target.result;
+            photoPreviewImg.src = uploadedPhotoData;
+            photoPreviewImg.style.display = 'block';
+            photoPlaceholder.style.display = 'none';
+            photoClearBtn.style.display = 'flex';
+            photoUploadBox.classList.add('has-photo');
+            photoUploadBox.classList.remove('is-skipped');
+            setPhotoSkippedState(false, false);
+            playSuccessChime();
+            showToast('প্রোফাইল ছবি সফলভাবে যুক্ত হয়েছে! 📸✨', '✅');
+          };
+          reader.readAsDataURL(file);
+        });
+
+        // Remove photo button
+        photoClearBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          uploadedPhotoData = null;
+          userPhotoInput.value = '';
+          photoPreviewImg.src = '';
+          photoPreviewImg.style.display = 'none';
+          photoPlaceholder.style.display = 'flex';
+          photoClearBtn.style.display = 'none';
+          photoUploadBox.classList.remove('has-photo');
+          playCartoonBuzz();
+          showToast('ছবি সরানো হয়েছে!', '🗑️');
+        });
+
+        // Drag & Drop
+        photoUploadBox.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          photoUploadBox.style.borderColor = 'var(--cyan)';
+          photoUploadBox.style.transform = 'scale(1.05)';
+        });
+        photoUploadBox.addEventListener('dragleave', () => {
+          photoUploadBox.style.borderColor = '';
+          photoUploadBox.style.transform = '';
+        });
+        photoUploadBox.addEventListener('drop', (e) => {
+          e.preventDefault();
+          photoUploadBox.style.borderColor = '';
+          photoUploadBox.style.transform = '';
+          const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+          if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              uploadedPhotoData = event.target.result;
+              photoPreviewImg.src = uploadedPhotoData;
+              photoPreviewImg.style.display = 'block';
+              photoPlaceholder.style.display = 'none';
+              photoClearBtn.style.display = 'flex';
+              photoUploadBox.classList.add('has-photo');
+              photoUploadBox.classList.remove('is-skipped');
+              setPhotoSkippedState(false, false);
+              playSuccessChime();
+              showToast('প্রোফাইল ছবি সফলভাবে যুক্ত হয়েছে! 📸✨', '✅');
+            };
+            reader.readAsDataURL(file);
+          } else {
+            playBuzzSound();
+            showToast('দয়া করে শুধুমাত্র ছবি ফাইল ড্রপ করুন!', '⚠️');
+          }
+        });
+      }
+
+      // Skip Photo Tickmark toggle
+      if (skipPhotoContainer) {
+        skipPhotoContainer.addEventListener('click', () => {
+          setPhotoSkippedState(!isPhotoSkipped, true);
+        });
+        skipPhotoContainer.addEventListener('keydown', (e) => {
+          if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            setPhotoSkippedState(!isPhotoSkipped, true);
+          }
+        });
+      }
+
+      // ==========================================
+      // REASONS FOR BEING SINGLE (GENDER-AWARE)
+      // ==========================================
+      const maleReasons = [
+        "টাকা নাই 😂",
+        "চেহারা দেখে সবাই ভাই ডাকে 😭",
+        "প্রেম করতে ভয় লাগে 💔",
+        "Crush অন্যের সাথে চলে গেছে 🏃‍♀️💨",
+        "বিয়ে করার বয়স হয়নি 👶",
+        "বিয়ে করার টাকা নেই 💸",
+        "ভাগ্যে প্রেম নাই, শুধু বেদনা 🥀",
+        "পড়ালেখা আর ক্যারিয়ার নিয়ে ব্যস্ত (মিথ্যা অজুহাত) 🤓",
+        "অতিরিক্ত ইনোসেন্ট ও ভদ্র 😇",
+        "মেয়েদের সাথে কথা বলতে লজ্জা পাই 🙈",
+        "সারাদিন ফ্রি-ফায়ার আর পাবজি খেলি 🎮",
+        "আব্বুর ভয়ে প্রেমের চিন্তা বাদ দিয়েছি 🧔‍♂️"
+      ];
+
+      const femaleReasons = [
+        "যোগ্য ও সত্যিকারের মনের মতো ছেলে খুঁজে পাই না 🧐",
+        "সব ছেলেরাই মিষ্টি কথার ভণিতা করে রূপের পেছনে দৌড়ায় 🙄",
+        "বাবার পছন্দ করা সুপাত্রের সাথে রাজকীয়ভাবে বিয়ে বসব 👑",
+        "পড়ালেখা শেষ করে নিজের পায়ে প্রতিষ্ঠিত হতে চাই 🎓",
+        "রান্না-বান্না করতে পারি না, জামাইয়ের ঝাড়ি খেতে পারব না 🍳😂",
+        "প্রেমের প্যারা নেওয়ার চেয়ে বান্ধবীদের সাথে ফুচকা খাওয়াই সেরা 🥗✨",
+        "Crush অন্য কাউকে ভালোবাসে 💔🥺",
+        "ছেলেরা শুধু ফ্লার্ট করে, সৎ কমিটমেন্ট দেওয়ার ক্ষমতা নাই 💅",
+        "বড় ভাই আর আব্বুর ভয়ে কোনো ছেলের মেসেজের রিপ্লাই দিই না 🥊😨",
+        "আব্বু-আম্মুর সম্মান বাঁচাতে প্রেম-ভালোবাসা থেকে ১০০ হাত দূরে 🌸",
+        "মেকআপ আর শপিংয়ের বিশাল খরচ কোনো বয়ফ্রেন্ড সামলাতে পারবে না 🛍️💸",
+        "সিঙ্গেল কুইন হয়ে ঘুমাব, কারও ফালতু গুড মর্নিং শোনার টাইম নাই 😴👑"
+      ];
+
+      const hijraReasons = [
+        "সমাজে নিঃস্বার্থ ও সত্যিকারের ভালোবাসার বড্ড অভাব 🌈",
+        "একাকীত্ব ও স্বাধীন জীবনের চেয়ে বড় শান্তি আর কোথাও নেই 🕊️",
+        "প্রেমের মিথ্যে মায়াজালে না জড়িয়ে নিজের আত্মমর্যাদায় বাঁচাই সেরা ✨",
+        "আজীবন সিঙ্গেল থেকে স্বাধীন ছন্দে আনন্দ নিয়ে বেঁচে থাকব 💃",
+        "মিথ্যে প্রতিশ্রুতি নয়, সিঙ্গেল থাকাই আসল মুক্তি 👑"
+      ];
+
+      function renderReasons(gender) {
+        const container = document.getElementById('reasonsContainer');
+        if (!container) return;
+
+        let list = maleReasons;
+        if (gender === 'মহিলা') {
+          list = femaleReasons;
+        } else if (gender === 'হিজড়া') {
+          list = hijraReasons;
+        }
+
+        container.innerHTML = '';
+        selectedReason = list[0]; // Default to first reason
+        list.forEach((reason, idx) => {
+          const item = document.createElement('div');
+          item.className = 'reason-item';
+          if (idx === 0) item.classList.add('selected');
+          item.setAttribute('data-reason', reason);
+          item.innerHTML = `<span>${reason}</span>`;
+          item.addEventListener('click', () => {
+            container.querySelectorAll('.reason-item').forEach(r => r.classList.remove('selected'));
+            item.classList.add('selected');
+            selectedReason = reason;
+            playTone(550, 'sine', 0.08);
+          });
+          container.appendChild(item);
+        });
+      }
+
+      // Wife/Husband: আছে / নাই toggle prank
       wifeYesBtn.addEventListener('click', () => {
         playCartoonBuzz();
         setTimeout(playSadTrombone, 220);
-        showModal(
-          'ধরা খাইছিস ভণ্ড!',
-          'বউ আছে তো এই সিঙ্গেল কোম্পানিতে কী করিস? এখনই তালাক দিয়ে সিঙ্গেল হ, নয়তো বের হ! 😡😂',
-          '👊😂',
-          'মাফ চাই ভাই, বউ নাই!'
-        );
+        const isFemale = (selectedGender === 'মহিলা');
+        if (isFemale) {
+          showModal(
+            'ধরা খাইছিস ভণ্ড!',
+            'জামাই আছে তো এই সিঙ্গেল কোম্পানিতে কী করিস? এখনই তালাক দিয়ে সিঙ্গেল হ, নয়তো বের হ! 😡😂',
+            '👊😂',
+            'মাফ চাই আপু, জামাই নাই!'
+          );
+        } else {
+          showModal(
+            'ধরা খাইছিস ভণ্ড!',
+            'বউ আছে তো এই সিঙ্গেল কোম্পানিতে কী করিস? এখনই তালাক দিয়ে সিঙ্গেল হ, নয়তো বের হ! 😡😂',
+            '👊😂',
+            'মাফ চাই ভাই, বউ নাই!'
+          );
+        }
         wifeYesBtn.classList.remove('selected');
         wifeNoBtn.classList.remove('selected');
         selectedWife = null;
@@ -3051,19 +3540,30 @@
           wifeStatusTag.textContent = 'নাই (ভেরিফাইড)';
           wifeStatusTag.style.display = 'inline-block';
         }
-        showToast('খাঁটি সিঙ্গেল হিসেবে ভেরিফাইড!', '✅');
+        const isFemale = (selectedGender === 'মহিলা');
+        showToast(isFemale ? 'খাঁটি সিঙ্গেল কুইন হিসেবে ভেরিফাইড! 👑' : 'খাঁটি সিঙ্গেল হিসেবে ভেরিফাইড! ✅', '✅');
       });
 
-      // GF: আছে / নাই toggle prank
+      // GF/BF: আছে / নাই toggle prank
       gfYesBtn.addEventListener('click', () => {
         playCartoonBuzz();
         setTimeout(playSadTrombone, 220);
-        showModal(
-          'মিথ্যা কথা বলা মহাপাপ!',
-          'সিঙ্গেল কোম্পানির ড্রোন দিয়ে তোকে নজরদারি করা হচ্ছে! কার সাথে প্রেম করিস? মিথ্যা বললে জরিমানা হবে! 🛸😂',
-          '🛸😂',
-          'না ভাই, GF নাই সত্যি বলছি'
-        );
+        const isFemale = (selectedGender === 'মহিলা');
+        if (isFemale) {
+          showModal(
+            'মিথ্যা কথা বলা মহাপাপ!',
+            'সিঙ্গেল কোম্পানির স্যাটেলাইট দিয়ে নজরদারি করা হচ্ছে! কোন ছেলের সাথে চ্যাট করিস? সত্য বল নয়তো জরিমানা হবে! 🛸😂',
+            '🛸😂',
+            'না আপু, Boyfriend নাই সত্যি বলছি'
+          );
+        } else {
+          showModal(
+            'মিথ্যা কথা বলা মহাপাপ!',
+            'সিঙ্গেল কোম্পানির ড্রোন দিয়ে তোকে নজরদারি করা হচ্ছে! কার সাথে প্রেম করিস? মিথ্যা বললে জরিমানা হবে! 🛸😂',
+            '🛸😂',
+            'না ভাই, GF নাই সত্যি বলছি'
+          );
+        }
         gfYesBtn.classList.remove('selected');
         gfNoBtn.classList.remove('selected');
         selectedGf = null;
@@ -3079,26 +3579,15 @@
           gfStatusTag.textContent = 'নাই (নিরাপদ)';
           gfStatusTag.style.display = 'inline-block';
         }
-        showToast('GF বিহীন শান্তির জীবন!', '🕊️');
+        const isFemale = (selectedGender === 'মহিলা');
+        showToast(isFemale ? 'Boyfriend বিহীন শান্তির কুইন জীবন! 🕊️' : 'GF বিহীন শান্তির জীবন! 🕊️', '🕊️');
       });
 
-      // Gender Selection
+      // Page 2 Gender Selection Cards
       genderCards.forEach(card => {
         card.addEventListener('click', () => {
-          genderCards.forEach(c => c.classList.remove('selected'));
-          card.classList.add('selected');
-          selectedGender = card.getAttribute('data-gender');
-          playTone(600, 'sine', 0.08);
-        });
-      });
-
-      // Reason selection
-      reasonItems.forEach(item => {
-        item.addEventListener('click', () => {
-          reasonItems.forEach(r => r.classList.remove('selected'));
-          item.classList.add('selected');
-          selectedReason = item.getAttribute('data-reason');
-          playTone(550, 'sine', 0.08);
+          const gen = card.getAttribute('data-gender');
+          applyGenderTheme(gen);
         });
       });
 
@@ -3112,16 +3601,18 @@
           return;
         }
 
+        const isFemale = (selectedGender === 'মহিলা');
+
         if (!selectedWife) {
           playBuzzSound();
-          showToast('Wife আছে নাকি নাই তা সিলেক্ট করুন!', '⚠️');
+          showToast(isFemale ? 'Husband (জামাই) আছে নাকি নাই তা সিলেক্ট করুন!' : 'Wife আছে নাকি নাই তা সিলেক্ট করুন!', '⚠️');
           wifeNoBtn.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
           return;
         }
 
         if (!selectedGf) {
           playBuzzSound();
-          showToast('GF আছে নাকি নাই তা সিলেক্ট করুন!', '⚠️');
+          showToast(isFemale ? 'Boyfriend (BF) আছে নাকি নাই তা সিলেক্ট করুন!' : 'GF আছে নাকি নাই তা সিলেক্ট করুন!', '⚠️');
           gfNoBtn.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
           return;
         }
@@ -3145,6 +3636,24 @@
           playBuzzSound();
           showToast('সিঙ্গেল থাকার কারণ সিলেক্ট করুন!', '⚠️');
           document.getElementById('reasonsContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        // Photo Upload or Skip Requirement
+        if (!uploadedPhotoData && !isPhotoSkipped) {
+          playBuzzSound();
+          showToast('দয়া করে ছবি আপলোড করুন অথবা নিচে "ছবি আপলোড স্কিপ করুন" এ টিক দিন! 📸', '⚠️');
+          if (skipPhotoContainer) {
+            skipPhotoContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            skipPhotoContainer.style.borderColor = 'var(--yellow)';
+            skipPhotoContainer.style.boxShadow = '0 0 18px rgba(255, 208, 0, 0.45)';
+            setTimeout(() => {
+              if (!isPhotoSkipped) {
+                skipPhotoContainer.style.borderColor = '';
+                skipPhotoContainer.style.boxShadow = '';
+              }
+            }, 2200);
+          }
           return;
         }
 
@@ -3271,8 +3780,602 @@
         const randomNum = Math.floor(1000 + Math.random() * 9000);
         cardMemberId.textContent = `#SC-2026-${randomNum}`;
 
-        const avatars = selectedGender === 'মহিলা' ? ['👩', '👸', '💅', '🕶️'] : ['😎', '🧔', '🧑‍💻', '⚡'];
-        cardAvatar.textContent = avatars[Math.floor(Math.random() * avatars.length)];
+        const isFemale = (selectedGender === 'মহিলা');
+        const isHijra = (selectedGender === 'হিজড়া');
+
+        // Photo or Emoji Avatar
+        // User requested: "and jeta dibe oii ta single id te oii khane ashbe r jodi Skip kore tahoel emoji eta ashbe 🤵‍♂️Male/Female🤵‍♀️"
+        if (uploadedPhotoData && !isPhotoSkipped) {
+          cardAvatar.innerHTML = `<img src="${uploadedPhotoData}" alt="${name}" />`;
+          cardAvatar.style.padding = '0';
+        } else {
+          let defaultEmoji = '🤵‍♂️';
+          if (isFemale) {
+            defaultEmoji = '🤵‍♀️';
+          } else if (isHijra) {
+            defaultEmoji = '🌈';
+          } else {
+            defaultEmoji = '🤵‍♂️';
+          }
+          cardAvatar.textContent = defaultEmoji;
+          cardAvatar.style.padding = '';
+        }
+
+        // Seal text
+        const idVerifiedSealText = document.getElementById('idVerifiedSealText');
+        if (idVerifiedSealText) {
+          if (isFemale) {
+            idVerifiedSealText.textContent = '১০০% পরীক্ষিত খাঁটি সিঙ্গেল কুইন 👑';
+          } else if (isHijra) {
+            idVerifiedSealText.textContent = '১০০% পরীক্ষিত খাঁটি সিঙ্গেল কিংবদন্তি 🌈';
+          } else {
+            idVerifiedSealText.textContent = '১০০% পরীক্ষিত খাঁটি সিঙ্গেল ভাই';
+          }
+        }
+
+        // Apply theme to Page 4 components without showing unnecessary toast
+        applyGenderTheme(selectedGender, true);
+      }
+
+      // Prank Wallet Transactions Renderer (Gender-Aware)
+      function renderTransactions(gender) {
+        const container = document.getElementById('transactionsListContainer');
+        if (!container) return;
+
+        if (gender === 'মহিলা') {
+          container.innerHTML = `
+            <div class="transaction-item">
+              <div class="tx-left">
+                <span class="tx-icon">📱</span>
+                <div>
+                  <div class="tx-desc">BF রিচার্জ ও মিষ্টি মিষ্টি কথার প্যারা মুক্তি</div>
+                  <div class="tx-time">আজ, দুপুর ১২:৩০ • ১০০% মানসিক শান্তি</div>
+                </div>
+              </div>
+              <div class="tx-amount-plus">+৳ ৫,০০০</div>
+            </div>
+
+            <div class="transaction-item">
+              <div class="tx-left">
+                <span class="tx-icon">🛍️</span>
+                <div>
+                  <div class="tx-desc">অনলাইন ড্রেস ও মেকআপ স্পেশাল সেভিংস</div>
+                  <div class="tx-time">গতকাল • শপিং ফান্ড</div>
+                </div>
+              </div>
+              <div class="tx-amount-plus">+৳ ২০,০০০</div>
+            </div>
+
+            <div class="transaction-item">
+              <div class="tx-left">
+                <span class="tx-icon">🍲</span>
+                <div>
+                  <div class="tx-desc">রেস্টুরেন্টে গিয়ে ঝগড়া না করার মানসিক শান্তি</div>
+                  <div class="tx-time">৩ দিন আগে • শান্তিময় সেভিংস</div>
+                </div>
+              </div>
+              <div class="tx-amount-plus">+৳ ৩৫,০০০</div>
+            </div>
+
+            <div class="transaction-item">
+              <div class="tx-left">
+                <span class="tx-icon">🥗</span>
+                <div>
+                  <div class="tx-desc">বান্ধবীদের সাথে রাজকীয় ফুচকা ও চটপটি উৎসব</div>
+                  <div class="tx-time">গত সন্ধ্যায় • আসল আনন্দ</div>
+                </div>
+              </div>
+              <div class="tx-amount-minus">-৳ ১০০</div>
+            </div>
+          `;
+        } else {
+          container.innerHTML = `
+            <div class="transaction-item">
+              <div class="tx-left">
+                <span class="tx-icon">📱</span>
+                <div>
+                  <div class="tx-desc">GF রিচার্জের খরচ বেঁচে গেছে</div>
+                  <div class="tx-time">আজ, দুপুর ১২:৩০ • ১০০% সেভিংস</div>
+                </div>
+              </div>
+              <div class="tx-amount-plus">+৳ ৫,০০০</div>
+            </div>
+
+            <div class="transaction-item">
+              <div class="tx-left">
+                <span class="tx-icon">🎁</span>
+                <div>
+                  <div class="tx-desc">ভ্যালেন্টাইনস ডে গিফট না কেনার সেভিং</div>
+                  <div class="tx-time">গতকাল • সেভিংস ফান্ড</div>
+                </div>
+              </div>
+              <div class="tx-amount-plus">+৳ ২০,০০০</div>
+            </div>
+
+            <div class="transaction-item">
+              <div class="tx-left">
+                <span class="tx-icon">🍔</span>
+                <div>
+                  <div class="tx-desc">রেস্টুরেন্টের ফালতু বিল বাঁচানো</div>
+                  <div class="tx-time">৩ দিন আগে • পকেট সেভিংস</div>
+                </div>
+              </div>
+              <div class="tx-amount-plus">+৳ ৩৫,০০০</div>
+            </div>
+
+            <div class="transaction-item">
+              <div class="tx-left">
+                <span class="tx-icon">☕</span>
+                <div>
+                  <div class="tx-desc">টংয়ের দোকানে চা ও সিঙ্গেল আড্ডা</div>
+                  <div class="tx-time">গত সন্ধ্যায় • আসল খরচ</div>
+                </div>
+              </div>
+              <div class="tx-amount-minus">-৳ ৫০</div>
+            </div>
+          `;
+        }
+      }
+
+      // Funny Prank Messages for Relatives (Gender-Aware)
+      function getRelativePrankMessage(relType, gender) {
+        if (gender === 'মহিলা') {
+          const femaleRelPranks = {
+            jamai: {
+              title: 'জামাইয়ের বিকাশ পাওয়া যায়নি!',
+              msg: 'জামাই তো এখনো বিয়া করে ঘরেই তুলিস নাই! কার বিকাশে টাকা পাঠাবি? আগে জামাই জোগাড় কর আপু! 🤵‍♂️🤣',
+              emoji: '🤵‍♂️😂'
+            },
+            debor: {
+              title: 'দেবরের বিকাশ ব্লকড!',
+              msg: 'বিয়ে করলে তো দেবর পাবি! জামাই ছাড়া দেবর আসবে কোত্থেকে? দেবর তো দূরের কথা, ক্রাশই তোকে আপু ডাকে! 😭😂',
+              emoji: '👦😭'
+            },
+            nonod: {
+              title: 'ননদের রকেট বাতিল!',
+              msg: 'ননদের সাথে ঝগড়া কিংবা লেহেঙ্গার গিফট দিতে আগে বিয়ে করা বাধ্যতামূলক! জামাই কোথায়? 💃😂',
+              emoji: '💃👗'
+            },
+            shoshur: {
+              title: 'শ্বশুরবাবার রকেট একাউন্ট নেই!',
+              msg: 'শ্বশুরমশাই তো তোকে পুত্রবধূ হিসেবে চেনেই না! এক টাকাও শ্বশুর ফান্ডের লকার থেকে বের হবে না! 👴🤣',
+              emoji: '👴😂'
+            },
+            shashuri: {
+              title: 'শাশুড়ি মায়ের গোল্ডেন ফান্ড রিজেক্টেড!',
+              msg: 'শাশুড়ির মুখ তো দেখিসই নাই! সোনার গহনার স্বপ্ন ভেঙে চুরমার! আগে বউ হয়ে শ্বশুরবাড়ি যা! 👵👑',
+              emoji: '👵😂'
+            },
+            honeymoon: {
+              title: 'হানিমুন ফান্ড বাতিল!',
+              msg: 'জামাই ছাড়া হানিমুনে কি একা সুইজারল্যান্ড যাবি নাকি আপু? টিকিট তো বাতিল! ✈️😂',
+              emoji: '✈️🗿'
+            },
+            baby: {
+              title: 'ডায়াপার ফান্ড রিজেক্টেড!',
+              msg: 'জামাই ছাড়া বাচ্চা কোথা থেকে আসবে আপু? বিজ্ঞানের সব নিয়ম ভেঙে ফেললে তো হবে না! 👶😂',
+              emoji: '👶🍼'
+            }
+          };
+          return femaleRelPranks[relType] || {
+            title: 'আত্মীয় পাওয়া যায়নি!',
+            msg: 'বিয়ে না করা পর্যন্ত কোনো আত্মীয়ের একাউন্ট কাজ করবে না! 😂',
+            emoji: '😂'
+          };
+        } else {
+          const maleRelPranks = {
+            wife: {
+              title: 'বউয়ের বিকাশ পাওয়া যায়নি!',
+              msg: 'বউ-ই নাই, তো বউয়ের বিকাশ নাম্বার কোথা থেকে পাবি ভণ্ড? আগে বিয়ে কর, তারপর বউয়ের বিকাশ খুঁজিস! 👰🤣',
+              emoji: '👰😂'
+            },
+            shali: {
+              title: 'শালিকার বিকাশ ব্লকড!',
+              msg: 'শালিকা থাকলে তো শালিকার বিকাশ নাম্বার দিতি! শ্যালিকা তো দূরের কথা, তোর ক্রাশই তোকে ভাই ডাকে! 😭😂',
+              emoji: '💃😭'
+            },
+            shala: {
+              title: 'শালার বিকাশ নিষিদ্ধ!',
+              msg: 'শালা তো তোকে এখন জুতা দিয়ে পেটাবে! বিয়ে করিসনি আবার শালার একাউন্ট নাম্বার চাস! 👟😂',
+              emoji: '👦👟'
+            },
+            shoshur: {
+              title: 'শ্বশুরের রকেট একাউন্ট নেই!',
+              msg: 'শ্বশুর তোকে দেখলেই বলবে: আগে নিজের পায়ে দাঁড়া, চাকরি কর, তারপর মেয়ে চাস! শ্বশুরের রকেট নাম্বার পাবি কই? 👴🤣',
+              emoji: '👴😂'
+            },
+            shashuri: {
+              title: 'শাশুড়ির গোল্ডেন ক্যাশ রিজেক্টেড!',
+              msg: 'শাশুড়ি তো এখনো তোর মুখই দেখে নাই! সোনার গহনার টাকা দেওয়া বন্ধ! 👵😂',
+              emoji: '👵👑'
+            },
+            honeymoon: {
+              title: 'হানিমুন ফান্ড বাতিল!',
+              msg: 'বউ ছাড়া হানিমুনে কি একা একা সুইজারল্যান্ড যাবি নাকি ওস্তাদ? টিকিট তো বাতিল! ✈️😂',
+              emoji: '✈️🗿'
+            },
+            baby: {
+              title: 'ডায়াপার ফান্ড রিজেক্টেড!',
+              msg: 'বউ ছাড়া বাচ্চা কোথা থেকে আসবে ওস্তাদ? বিজ্ঞানের সব নিয়ম ভেঙে ফেললি তো! 👶😂',
+              emoji: '👶🍼'
+            }
+          };
+          return maleRelPranks[relType] || {
+            title: 'আত্মীয় পাওয়া যায়নি!',
+            msg: 'বিয়ে না করা পর্যন্ত কোনো আত্মীয়ের একাউন্ট কাজ করবে না! 😂',
+            emoji: '😂'
+          };
+        }
+      }
+
+      // Gateway Methods Renderer (Gender-Aware)
+      function renderGatewayMethods(gender) {
+        const container = document.getElementById('gatewayMethodsList');
+        if (!container) return;
+
+        if (gender === 'মহিলা') {
+          container.innerHTML = `
+            <div class="gateway-method-card" data-relative="jamai">
+              <div class="method-left">
+                <span class="method-icon">🤵‍♂️</span>
+                <div>
+                  <div class="method-name">১. জামাইয়ের বিকাশ (Husband's bKash)</div>
+                  <div class="method-sub">মাসিক পকেট মানি ও শপিং ভাউচার ফান্ড</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="debor">
+              <div class="method-left">
+                <span class="method-icon">👦</span>
+                <div>
+                  <div class="method-name">২. দেবরের বিকাশ / নগদ (Debor's bKash)</div>
+                  <div class="method-sub">ফুচকা ও মিষ্টি আবদার কমিশন ফান্ড</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="nonod">
+              <div class="method-left">
+                <span class="method-icon">💃</span>
+                <div>
+                  <div class="method-name">৩. ননদের রকেট (Nonod's Rocket)</div>
+                  <div class="method-sub">লেহেঙ্গা ও বিয়ের উপহার বাজেট</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="shoshur">
+              <div class="method-left">
+                <span class="method-icon">👴</span>
+                <div>
+                  <div class="method-name">৪. শ্বশুরবাবার রকেট (Father-in-law's Rocket)</div>
+                  <div class="method-sub">স্নেহের গিফট ও দোয়া মানি ফান্ড</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="shashuri">
+              <div class="method-left">
+                <span class="method-icon">👵</span>
+                <div>
+                  <div class="method-name">৫. শাশুড়ি মায়ের গোল্ডেন ফান্ড (Mother-in-law's Gold)</div>
+                  <div class="method-sub">২২ ক্যারেট সোনার গহনা ও শান্তি রক্ষা অনুদান</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="honeymoon">
+              <div class="method-left">
+                <span class="method-icon">✈️</span>
+                <div>
+                  <div class="method-name">৬. হানিমুন সুইজারল্যান্ড ট্যুর বিকাশ</div>
+                  <div class="method-sub">৫-তারকা আলপাইন রিসোর্ট প্যাকেজ</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="baby">
+              <div class="method-left">
+                <span class="method-icon">👶</span>
+                <div>
+                  <div class="method-name">৭. ভবিষ্যৎ সন্তানের ডায়াপার ও স্কুল ফান্ড</div>
+                  <div class="method-sub">ইংলিশ মিডিয়াম স্পেশাল ডিপোজিট</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+          `;
+        } else {
+          container.innerHTML = `
+            <div class="gateway-method-card" data-relative="wife">
+              <div class="method-left">
+                <span class="method-icon">👰</span>
+                <div>
+                  <div class="method-name">১. বউয়ের বিকাশ (Wife's bKash)</div>
+                  <div class="method-sub">ইনস্ট্যান্ট শপিং ও পার্লার ফান্ড</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="shali">
+              <div class="method-left">
+                <span class="method-icon">💃</span>
+                <div>
+                  <div class="method-name">২. শ্যালিকার বিকাশ / নগদ (Shali's bKash)</div>
+                  <div class="method-sub">আইফোন ১৬ প্রো ম্যাক্স আবদার ফান্ড</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="shala">
+              <div class="method-left">
+                <span class="method-icon">👦</span>
+                <div>
+                  <div class="method-name">৩. শ্যালকের বিকাশ (Shala's bKash)</div>
+                  <div class="method-sub">বাইকের তেল ও আড্ডার পকেট মানি</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="shoshur">
+              <div class="method-left">
+                <span class="method-icon">👴</span>
+                <div>
+                  <div class="method-name">৪. শ্বশুরের রকেট (Father-in-law's Rocket)</div>
+                  <div class="method-sub">জমি রেজিস্ট্রি ও ফ্ল্যাট গিফট ফান্ড</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="shashuri">
+              <div class="method-left">
+                <span class="method-icon">👵</span>
+                <div>
+                  <div class="method-name">৫. শাশুড়ির গোল্ডেন ক্যাশ (Mother-in-law's Gold)</div>
+                  <div class="method-sub">২২ ক্যারেট সোনার গহনা অনুদান</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="honeymoon">
+              <div class="method-left">
+                <span class="method-icon">✈️</span>
+                <div>
+                  <div class="method-name">৬. হানিমুন সুইজারল্যান্ড ট্যুর বিকাশ</div>
+                  <div class="method-sub">৫-তারকা আলপাইন রিসোর্ট প্যাকেজ</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+
+            <div class="gateway-method-card" data-relative="baby">
+              <div class="method-left">
+                <span class="method-icon">👶</span>
+                <div>
+                  <div class="method-name">৭. ভবিষ্যৎ সন্তানের ডায়াপার ও স্কুল ফান্ড</div>
+                  <div class="method-sub">ইংলিশ মিডিয়াম স্পেশাল ডিপোজিট</div>
+                </div>
+              </div>
+              <span class="method-badge">সিলেক্ট</span>
+            </div>
+          `;
+        }
+
+        // Attach click listeners to cards
+        container.querySelectorAll('.gateway-method-card').forEach(card => {
+          card.addEventListener('click', () => {
+            const relType = card.getAttribute('data-relative');
+            const prank = getRelativePrankMessage(relType, selectedGender);
+            playCartoonBoing();
+            setTimeout(playFunnyLaughSound, 160);
+            showModal(prank.title, prank.msg, prank.emoji, selectedGender === 'মহিলা' ? 'মাফ চাই আপু 🤦‍♀️' : 'মাফ চাই ভাই 🤦‍♂️');
+          });
+        });
+      }
+
+      // ==========================================
+      // APPLY GENDER THEME & DYNAMIC UI SWAP
+      // ==========================================
+      function applyGenderTheme(gender, skipToast = false) {
+        selectedGender = gender;
+        const isFemale = (gender === 'মহিলা');
+        const isHijra = (gender === 'হিজড়া');
+
+        // Page 1 Switchers (Clean removal and addition of active states)
+        if (loginGenderMaleBtn && loginGenderFemaleBtn) {
+          if (isFemale) {
+            loginGenderFemaleBtn.classList.add('active', 'active-female');
+            loginGenderFemaleBtn.classList.remove('active-male');
+            loginGenderMaleBtn.classList.remove('active', 'active-male', 'active-female');
+          } else {
+            loginGenderMaleBtn.classList.add('active', 'active-male');
+            loginGenderMaleBtn.classList.remove('active-female');
+            loginGenderFemaleBtn.classList.remove('active', 'active-male', 'active-female');
+          }
+        }
+
+        // Page 2 Gender Cards
+        genderCards.forEach(c => {
+          if (c.getAttribute('data-gender') === gender) {
+            c.classList.add('selected');
+          } else {
+            c.classList.remove('selected');
+          }
+        });
+        const genderSelectedTag = document.getElementById('genderSelectedTag');
+        if (genderSelectedTag) {
+          genderSelectedTag.textContent = gender;
+        }
+
+        // Page 1 Labels
+        const loginHeroBadge = document.getElementById('loginHeroBadge');
+        if (loginHeroBadge) {
+          loginHeroBadge.textContent = isFemale 
+            ? '🚨 সতর্কতা: বিবাহিত নারী / জামাই ওয়ালাদের প্রবেশ নিষেধ' 
+            : '🚨 সতর্কতা: বিবাহিতদের প্রবেশ সম্পূর্ণ নিষেধ';
+        }
+
+        const wifeNameLabelText = document.getElementById('wifeNameLabelText');
+        const wifeNameIcon = document.getElementById('wifeNameIcon');
+        const wifeNameInputEl = document.getElementById('wifeNameInput');
+        if (wifeNameLabelText) {
+          wifeNameLabelText.textContent = isFemale 
+            ? '১. জামাইয়ের নাম (Husband\'s Name)' 
+            : (isHijra ? '১. সঙ্গীর নাম (Partner\'s Name)' : '১. বউয়ের নাম (Wife\'s Name)');
+        }
+        if (wifeNameIcon) {
+          wifeNameIcon.textContent = isFemale ? '🤵‍♂️' : '💍';
+        }
+        if (wifeNameInputEl) {
+          wifeNameInputEl.placeholder = isFemale ? 'এখানে জামাইয়ের নাম লিখুন...' : 'এখানে বউয়ের নাম লিখুন...';
+        }
+
+        const wifePhoneLabelText = document.getElementById('wifePhoneLabelText');
+        const wifePhoneIcon = document.getElementById('wifePhoneIcon');
+        const wifePhoneInputEl = document.getElementById('wifePhoneInput');
+        if (wifePhoneLabelText) {
+          wifePhoneLabelText.textContent = isFemale 
+            ? '২. জামাইয়ের নাম্বার (Husband\'s Phone)' 
+            : (isHijra ? '২. সঙ্গীর নাম্বার (Partner\'s Phone)' : '২. বউয়ের নাম্বার (Wife\'s Phone)');
+        }
+        if (wifePhoneIcon) {
+          wifePhoneIcon.textContent = isFemale ? '📱🤵‍♂️' : '📱👰';
+        }
+        if (wifePhoneInputEl) {
+          wifePhoneInputEl.placeholder = isFemale ? '01XXXXXXXXX (জামাইয়ের নম্বর)' : '01XXXXXXXXX';
+        }
+
+        const prankLoginBtnText = document.getElementById('prankLoginBtnText');
+        if (prankLoginBtnText) {
+          prankLoginBtnText.textContent = isFemale ? 'জামাইয়ের তথ্য দিয়ে Login' : 'বউয়ের তথ্য দিয়ে Login';
+        }
+
+        const skipBtnText = document.getElementById('skipBtnText');
+        const skipBtnIcon = document.getElementById('skipBtnIcon');
+        if (skipBtnText) {
+          skipBtnText.textContent = isFemale ? 'জামাই না থাকলে Skip করুন' : 'বউ না থাকলে Skip করুন';
+        }
+        if (skipBtnIcon) {
+          skipBtnIcon.textContent = isFemale ? '🏃‍♀️💨' : '🏃💨';
+        }
+
+        // Page 2 Form Labels
+        const partnerStatusLabel = document.getElementById('partnerStatusLabel');
+        const wifeYesBtnText = document.getElementById('wifeYesBtnText');
+        const wifeNoBtnText = document.getElementById('wifeNoBtnText');
+        if (partnerStatusLabel) {
+          partnerStatusLabel.textContent = isFemale ? '১. Husband (জামাই) আছে?' : (isHijra ? '১. Partner (সঙ্গী) আছে?' : '১. Wife (বউ) আছে?');
+        }
+        if (wifeYesBtnText) {
+          wifeYesBtnText.textContent = isFemale ? 'আছে 🤵‍♂️' : 'আছে 👰';
+        }
+        if (wifeNoBtnText) {
+          wifeNoBtnText.textContent = 'নাই 🕊️';
+        }
+
+        const crushStatusLabel = document.getElementById('crushStatusLabel');
+        const gfYesBtnText = document.getElementById('gfYesBtnText');
+        const gfNoBtnText = document.getElementById('gfNoBtnText');
+        if (crushStatusLabel) {
+          crushStatusLabel.textContent = isFemale ? '২. Boyfriend (BF) আছে?' : '২. Girlfriend (GF) আছে?';
+        }
+        if (gfYesBtnText) {
+          gfYesBtnText.textContent = isFemale ? 'আছে 🤴' : 'আছে 💖';
+        }
+        if (gfNoBtnText) {
+          gfNoBtnText.textContent = isFemale ? 'নাই 🙅‍♀️' : 'নাই 🙅‍♂️';
+        }
+
+        const reasonsSectionLabel = document.getElementById('reasonsSectionLabel');
+        if (reasonsSectionLabel) {
+          reasonsSectionLabel.textContent = isFemale ? 'প্রেম না করার বা সিঙ্গেল থাকার কারণ (Reasons)' : 'সিঙ্গেল থাকার কারণ (Reason for Single)';
+        }
+
+        const skipPhotoHintText = document.getElementById('skipPhotoHintText');
+        if (skipPhotoHintText) {
+          skipPhotoHintText.textContent = isFemale 
+            ? '*ছবি স্কিপ করলে সিঙ্গেল আইডিতে অটোমেটিক 🤵‍♀️ ইমোজি বসবে'
+            : (isHijra ? '*ছবি স্কিপ করলে সিঙ্গেল আইডিতে অটোমেটিক 🌈 ইমোজি বসবে' : '*ছবি স্কিপ করলে সিঙ্গেল আইডিতে অটোমেটিক 🤵‍♂️ ইমোজি বসবে');
+        }
+
+        // Render Reasons list for selected gender
+        renderReasons(gender);
+
+        // Page 4 Radar Labels
+        const radarSectionTitle = document.getElementById('radarSectionTitle');
+        const radarSectionSub = document.getElementById('radarSectionSub');
+        const scanCrushBtnText = document.getElementById('scanCrushBtnText');
+        if (radarSectionTitle) {
+          radarSectionTitle.textContent = isFemale ? '🛰️ জরুরি হ্যান্ডসাম ক্রাশ/বয়ফ্রেন্ড ডিটেক্টর' : '🛰️ জরুরি ক্রাশ/প্রেমিকা ডিটেক্টর';
+        }
+        if (radarSectionSub) {
+          radarSectionSub.textContent = isFemale ? '১০ কিমি এলাকার মধ্যে হ্যান্ডসাম ক্রাশ বয় স্ক্যান করা হচ্ছে...' : '১০ কিমি এলাকার মধ্যে প্রেমিকা স্ক্যান করা হচ্ছে...';
+        }
+        if (scanCrushBtnText) {
+          scanCrushBtnText.textContent = isFemale ? '১০ কিমি ক্রাশ বয় স্ক্যান করুন 📡' : 'রাডার স্ক্যান চালু করুন 📡';
+        }
+
+        const radarModalTitleEl = document.getElementById('radarModalTitle');
+        const radarCountBadgeEl = document.getElementById('radarCountBadge');
+        if (radarModalTitleEl) {
+          radarModalTitleEl.innerHTML = isFemale 
+            ? '<span>🛰️</span><span>১০ কিমি পরিধির হ্যান্ডসাম ক্রাশ রাডার</span>'
+            : '<span>🛰️</span><span>১০ কিমি পরিধির ক্রাশ রাডার</span>';
+        }
+        if (radarCountBadgeEl) {
+          radarCountBadgeEl.innerHTML = isFemale 
+            ? '<span style="display:inline-block; width:6px; height:6px; background:#00ff88; border-radius:50%; box-shadow:0 0 5px #00ff88;"></span> ২০ জন হ্যান্ডসাম ক্রাশ সক্রিয় ডিটেক্টেড'
+            : '<span style="display:inline-block; width:6px; height:6px; background:#00ff88; border-radius:50%; box-shadow:0 0 5px #00ff88;"></span> ১৮ জন ক্রাশ সক্রিয় ডিটেক্টেড';
+        }
+
+        const tryAnotherGirlBtnEl = document.getElementById('tryAnotherGirlBtn');
+        if (tryAnotherGirlBtnEl) {
+          tryAnotherGirlBtnEl.innerHTML = isFemale 
+            ? '<span>অন্য কোনো ছেলেকে প্রপোজ করে দেখুন</span><span>🔄</span>'
+            : '<span>অন্য কাউকে প্রপোজ করে ট্রাই করুন</span><span>🔄</span>';
+        }
+
+        const closeRejectModalBtnEl = document.getElementById('closeRejectModalBtn');
+        if (closeRejectModalBtnEl) {
+          closeRejectModalBtnEl.innerHTML = isFemale 
+            ? '<span>সিঙ্গেল কুইন হিসেবেই ভালো আছি 👑✨</span>'
+            : '<span>সিঙ্গেল থাকাই ভালো, শান্তিতে আছি 🗿</span>';
+        }
+
+        const rejectFutureText = document.getElementById('rejectFutureText');
+        if (rejectFutureText) {
+          rejectFutureText.textContent = isFemale ? 'বোন-জোন (Sister-zone) / ব্লক-লিস্ট' : 'ফ্রেন্ডজোন / ভাইয়া-জোন';
+        }
+
+        // Render Transactions & Payment Gateway
+        renderTransactions(gender);
+        renderGatewayMethods(gender);
+
+        // Render Radar Profiles
+        renderRadarList(gender);
+
+        if (!skipToast) {
+          playTone(600, 'sine', 0.1);
+          if (isFemale) {
+            showToast('নারী মোড অ্যাক্টিভেট! জামাই ও বয়ফ্রেন্ড ভার্সনে রূপান্তরিত হয়েছে 👑✨', '👩');
+          } else if (isHijra) {
+            showToast('হিজড়া মোড অ্যাক্টিভেট! অন্তর্ভুক্তিমূলক সিঙ্গেল রূপ 🌈', '🌈');
+          } else {
+            showToast('পুরুষ মোড অ্যাক্টিভেট! বউ ও জিএফ ভার্সন প্রস্তুত 🤵‍♂️', '👨');
+          }
+        }
       }
 
       // Prank Wallet Actions
@@ -3283,7 +4386,6 @@
       const relativeAccountBox = document.getElementById('relativeAccountBox');
       const relativeAccountInput = document.getElementById('relativeAccountInput');
       const confirmWithdrawBtn = document.getElementById('confirmWithdrawBtn');
-      const gatewayMethodCards = document.querySelectorAll('.gateway-method-card');
 
       // Open Gateway Modal when Withdraw is clicked
       withdrawBtn.addEventListener('click', () => {
@@ -3300,60 +4402,6 @@
         if (e.target === gatewayModal) {
           gatewayModal.classList.remove('show');
         }
-      });
-
-      // Funny prank messages for relative accounts
-      const relativePrankMessages = {
-        wife: {
-          title: 'বউয়ের বিকাশ পাওয়া যায়নি!',
-          msg: 'বউ-ই নাই, তো বউয়ের বিকাশ নাম্বার কোথা থেকে পাবি ভণ্ড? আগে বিয়ে কর, তারপর বউয়ের বিকাশ খুঁজিস! 👰🤣',
-          emoji: '👰😂'
-        },
-        shali: {
-          title: 'শালিকার বিকাশ ব্লকড!',
-          msg: 'শালিকা থাকলে তো শালিকার বিকাশ নাম্বার দিতি! শ্যালিকা তো দূরের কথা, তোর ক্রাশই তোকে ভাই ডাকে! 😭😂',
-          emoji: '💃😭'
-        },
-        shala: {
-          title: 'শালার বিকাশ নিষিদ্ধ!',
-          msg: 'শালা তো তোকে এখন জুতা দিয়ে পেটাবে! বিয়ে করিসনি আবার শালার একাউন্ট নাম্বার চাস! 👟😂',
-          emoji: '👦👟'
-        },
-        shoshur: {
-          title: 'শ্বশুরের রকেট একাউন্ট নেই!',
-          msg: 'শ্বশুর তোকে দেখলেই বলবে: আগে নিজের পায়ে দাঁড়া, চাকরি কর, তারপর মেয়ে চাস! শ্বশুরের রকেট নাম্বার পাবি কই? 👴🤣',
-          emoji: '👴😂'
-        },
-        shashuri: {
-          title: 'শাশুড়ির গোল্ডেন ক্যাশ রিজেক্টেড!',
-          msg: 'শাশুড়ি তো এখনো তোর মুখই দেখে নাই! সোনার গহনার টাকা দেওয়া বন্ধ! 👵😂',
-          emoji: '👵👑'
-        },
-        honeymoon: {
-          title: 'হানিমুন ফান্ড বাতিল!',
-          msg: 'বউ ছাড়া হানিমুনে কি একা একা সুইজারল্যান্ড যাবি নাকি ওস্তাদ? টিকিট তো বাতিল! ✈️😂',
-          emoji: '✈️🗿'
-        },
-        baby: {
-          title: 'ডায়াপার ফান্ড রিজেক্টেড!',
-          msg: 'বউ ছাড়া বাচ্চা কোথা থেকে আসবে ওস্তাদ? বিজ্ঞানের সব নিয়ম ভেঙে ফেললি তো! 👶😂',
-          emoji: '👶🍼'
-        }
-      };
-
-      // Click on relative payment methods
-      gatewayMethodCards.forEach(card => {
-        card.addEventListener('click', () => {
-          const relType = card.getAttribute('data-relative');
-          const prank = relativePrankMessages[relType] || {
-            title: 'আত্মীয় পাওয়া যায়নি!',
-            msg: 'বিয়ে না করা পর্যন্ত কোনো আত্মীয়ের একাউন্ট কাজ করবে না! 😂',
-            emoji: '😂'
-          };
-          playCartoonBoing();
-          setTimeout(playFunnyLaughSound, 160);
-          showModal(prank.title, prank.msg, prank.emoji, 'মাফ চাই ভাই 🤦‍♂️');
-        });
       });
 
       // Relative Account Number field prank
@@ -3414,24 +4462,30 @@
       const radarCountBadge = document.getElementById('radarCountBadge');
       const cancelProposalLoadingBtn = document.getElementById('cancelProposalLoadingBtn');
 
-      // Helper function to return back to View 1 (18 scanned girls list)
-      function backToGirlsList() {
+      // Helper function to return back to View 1 (Candidate list)
+      function backToRadarList() {
         clearInterval(proposalProgressInterval);
         clearTimeout(proposalLoadingTimer);
         proposalLoadingView.style.display = 'none';
         proposalRejectView.style.display = 'none';
         radarGirlsListView.style.display = 'flex';
 
-        // Reset modal header
+        const isFemale = (selectedGender === 'মহিলা');
         if (radarModalTitle) {
-          radarModalTitle.innerHTML = '<span>🛰️</span><span>১০ কিমি পরিধির ক্রাশ রাডার</span>';
+          radarModalTitle.innerHTML = isFemale 
+            ? '<span>🛰️</span><span>১০ কিমি পরিধির হ্যান্ডসাম ক্রাশ রাডার</span>'
+            : '<span>🛰️</span><span>১০ কিমি পরিধির ক্রাশ রাডার</span>';
         }
         if (radarCountBadge) {
           radarCountBadge.style.display = 'inline-flex';
+          radarCountBadge.innerHTML = isFemale 
+            ? '<span style="display:inline-block; width:6px; height:6px; background:#00ff88; border-radius:50%; box-shadow:0 0 5px #00ff88;"></span> ২০ জন হ্যান্ডসাম ক্রাশ সক্রিয় ডিটেক্টেড'
+            : '<span style="display:inline-block; width:6px; height:6px; background:#00ff88; border-radius:50%; box-shadow:0 0 5px #00ff88;"></span> ১৮ জন ক্রাশ সক্রিয় ডিটেক্টেড';
         }
         closeCrushRadarBtn.title = 'বন্ধ করুন';
         playTone(680, 'sine', 0.1);
       }
+      const backToGirlsList = backToRadarList; // Backward compatibility alias
 
       // 18 Realistic local crush profiles within 10km
       const radarGirlsList = [
@@ -3671,26 +4725,347 @@
         }
       ];
 
-      // Render 18 girls cards inside the modal list
-      function renderRadarGirls() {
+      // ==========================================
+      // 21 HANDSOME LOCAL BOYS / CRUSH PROFILES FOR FEMALE USERS
+      // (Top candidate: জিহাদুল ইসলাম সজীব, Age 21, HSC)
+      // ==========================================
+      const radarBoysList = [
+        {
+          name: "জিহাদুল ইসলাম সজীব",
+          age: "২১ বছর",
+          className: "এইচএসসি (HSC)",
+          height: "৫ ফুট ১০ ইঞ্চি",
+          distance: "০.৭ কিমি",
+          avatar: "👑",
+          status: "অনলাইন • সবার সেরা চয়েস ⭐",
+          rejectionReasons: [
+            "সরি আপু, জিহাদুল ইসলাম সজীব এত সহজে কারও প্রেমে পড়ে না! HSC-র পড়াশোনা আর ভবিষ্যৎ ক্যারিয়ার বাদ দিয়ে প্রেমের ফাঁদে পড়ার ছেলে সজীব না! 📚😎",
+            "আপনার প্রপোজাল দেখে সজীব ভাই মিষ্টি হেসে বললেন: 'আপনার সিঙ্গেল থাকার কারণ: {reason}! এতো প্যারা নেওয়ার চেয়ে আমি সিঙ্গেল থাকাই প্রিফার করি আপু!' 🗿✨"
+          ]
+        },
+        {
+          name: "ফারহান আহমেদ তন্ময়",
+          age: "২২ বছর",
+          className: "বুয়েট ৩য় বর্ষ (সিএসই)",
+          height: "৫ ফুট ১০ ইঞ্চি",
+          distance: "১.১ কিমি",
+          avatar: "💻",
+          status: "অনলাইন • গিটহাবে কোডিং করছে",
+          rejectionReasons: [
+            "সরি আপু, আমার জীবনে কোডিং আর বাগ ফিক্স করাই একমাত্র ভালোবাসা! প্রেমের মতো জটিল সফটওয়্যার রান করার মতো র‍্যাম আমার মাথায় নাই! 💻🚫",
+            "আপনার বায়োডাটাতে দেখলাম আপনার সিঙ্গেল থাকার কারণ: '{reason}'! আব্বু বলছে সিজিপিএ ৩.৯ ছাড়া প্রেম করা হারাম! 🤓📚"
+          ]
+        },
+        {
+          name: "সাইফ আল হাসান",
+          age: "২৩ বছর",
+          className: "আইবিএ (এমবিএ ফাইনাল)",
+          height: "৫ ফুট ১১ ইঞ্চি",
+          distance: "১.৬ কিমি",
+          avatar: "🕶️",
+          status: "অনলাইন • ইয়ামাহা বাইক রাইডিংয়ে",
+          rejectionReasons: [
+            "সরি আপু, আমার R15 বাইকের ব্যাকসিট অলরেডি বুকড! আপনি তো রিকশায় উঠতেই ভয় পান, হাইওয়েতে উড়বেন কীভাবে? 🏍️💨",
+            "আপনার নাম {name}? আমার আম্মু বলেছে লক্ষ্মী গৃহিণী মেয়ে ছাড়া ঘরে বউ তুলবে না, যে ফুচকার চেয়ে বেশি রান্না পছন্দ করে! 🍳😂"
+          ]
+        },
+        {
+          name: "তামিম ইকবাল রোহান",
+          age: "২৪ বছর",
+          className: "তরুণ উদ্যোক্তা ও সিইও",
+          height: "৫ ফুট ৯ ইঞ্চি",
+          distance: "২.০ কিমি",
+          avatar: "💼",
+          status: "অনলাইন • বিজনেস মিটিংয়ে",
+          rejectionReasons: [
+            "আমার বর্তমান স্টার্টআপের টার্নওভার ২ কোটি টাকা! আপনি এখনো আব্বুর কাছে শপিংয়ের পকেটমানি চান! প্রপোজাল স্ট্যাটাস: হোল্ডেড! 📈💅",
+            "আপনি সিঙ্গেল কারণ: '{reason}'! আমার কোম্পানির পরিচালনা পর্ষদে আলোচনা করে দেখলাম—আপনাকে ফ্রেন্ডজোন দেওয়াই সেফ! 🤝😂"
+          ]
+        },
+        {
+          name: "তানভীর হাসান নিলয়",
+          age: "২১ বছর",
+          className: "ঢাকা বিশ্ববিদ্যালয় (অর্থনীতি)",
+          height: "৫ ফুট ১০ ইঞ্চি",
+          distance: "২.৩ কিমি",
+          avatar: "🎸",
+          status: "অনলাইন • গিটার বাজাচ্ছে",
+          rejectionReasons: [
+            "আমি তো দেবদাসের মতো গান গেয়ে বেড়াই! প্রেম করার মতো মানিব্যাগ পুরো খালি, ফুচকা আপনি খাওয়ালে ভেবে দেখা যেত! 🎸🍜",
+            "সরি আপু! আপনার বয়স {age}, কিন্তু আমার ক্রাশ বলিউডের আলিয়া ভাট! আপনি তো ওর মতো কিউট এক্সপ্রেশন দিতে পারেন না! 💃😂"
+          ]
+        },
+        {
+          name: "ডা. রাফসান মাহমুদ প্রান্ত",
+          age: "২৫ বছর",
+          className: "মেডিকেল ইন্টার্ন ডক্টর (MBBS)",
+          height: "৫ ফুট ৮ ইঞ্চি",
+          distance: "২.৭ কিমি",
+          avatar: "🩺",
+          status: "অনলাইন • নাইট ডিউটি হাসপাতালে",
+          rejectionReasons: [
+            "সারারাত হাসপাতালে ডিউটি করে ঘুমাতে পারি না, আপনার সাথে রাত জেগে 'বাবু খাইছো' চ্যাট করার টাইম কই? ক্ষমা করেন আপু! 💉😴",
+            "আপনার সিঙ্গেল থাকার কারণ: '{reason}'! এই জটিল রোগের কোনো অ্যান্টিবায়োটিক চিকিৎসা মেডিকেল সাইন্সে আবিষ্কার হয়নি! 🩺❌"
+          ]
+        },
+        {
+          name: "আসিফ আরমান অন্তু",
+          age: "২৩ বছর",
+          className: "ক্যাডেট অফিসার ও ফিটনেস ট্রেইনার",
+          height: "৫ ফুট ১১ ইঞ্চি",
+          distance: "৩.২ কিমি",
+          avatar: "🏋️‍♂️",
+          status: "অনলাইন • জিমে ওয়ার্কআউট করছে",
+          rejectionReasons: [
+            "সরি আপু, আমার জিমের প্রোটিন শেক আর ডায়েটের খরচই মাসে ২০ হাজার টাকা! আপনার লিপস্টিক আর ড্রেসের বাজেট আমি সামলাব কেমনে? 🏋️‍♂️💸",
+            "আমার হাইট ৫ ফুট ১১ ইঞ্চি, আপনার পাশে দাঁড়ালে সেলফি তুলতে আমাকে হাঁটু ভেঙে পোজ দিতে হবে! ফ্রেন্ডজোনে থাকুন! 📏😂"
+          ]
+        },
+        {
+          name: "সাজিদ রহমান শুভ",
+          age: "২০ বছর",
+          className: "আর্কিটেকচার ২য় বর্ষ",
+          height: "৫ ফুট ৯ ইঞ্চি",
+          distance: "৩.৫ কিমি",
+          avatar: "📐",
+          status: "অনলাইন • স্কেচ ড্রয়িংয়ে ব্যস্ত",
+          rejectionReasons: [
+            "আমি একটা বিল্ডিং ড্রয়িং শেষ করতে ৪ দিন ঘুমাই না, আপনি প্রেমের রিপ্লাই না পেয়ে পুরো ফেসবুক তোলপাড় করবেন! মাফ চাই! 🎨😴",
+            "আপনার মিষ্টি হাসির প্রশংসায় ডায়েরি ভরে গেল, তবে আমার আম্মু বলছে মামাতো বোনের সাথেই নাকি আমার বিয়ে ঠিক! 💔🙈"
+          ]
+        },
+        {
+          name: "শাহরিয়ার কবির দ্বীপ",
+          age: "২৪ বছর",
+          className: "সফটওয়্যার আর্কিটেক্ট (রিমোট ইউএস)",
+          height: "৬ ফুট ০ ইঞ্চি",
+          distance: "৩.৮ কিমি",
+          avatar: "💻",
+          status: "অনলাইন • ইউএস ক্লায়েন্ট কলে",
+          rejectionReasons: [
+            "আমি ক্যালিফোর্নিয়ার টাইমে ঘুমাই আর রাতভর ডলারে কাজ করি! আপনি দিনে কল না পেয়ে ব্রেকআপের আলটিমেটাম দেবেন! 🇺🇸💻",
+            "সরি আপু! আপনার বায়োডাটাতে লেখা '{reason}'! আমার পাইথন কোডে এটা 'HeartNotFound' এক্সেপশন দিচ্ছে! 🤖🚫"
+          ]
+        },
+        {
+          name: "নাজমুল হাসান সিয়াম",
+          age: "২১ বছর",
+          className: "ফটোগ্রাফার ও ট্রাভেল ব্লগার",
+          height: "৫ ফুট ১০ ইঞ্চি",
+          distance: "৪.১ কিমি",
+          avatar: "📷",
+          status: "অনলাইন • ফটোশুটের এডিটিংয়ে",
+          rejectionReasons: [
+            "আমি তো ভাবছিলাম আপনাকে ফ্রিতে মডেল বানিয়ে কয়েকটা ভাইরাল রিল বানাব! প্রেম করা তো আমার এজেন্ডায় নাই! 📸🎬",
+            "আপনার সৌন্দর্য ক্যামেরার লেন্সে দারুণ, কিন্তু চোখের চাহনি দেখে মনে হচ্ছে রাগ উঠলে প্লেট-বাসন ছুড়ে মারবেন! ✈️🗿"
+          ]
+        },
+        {
+          name: "আরাফাত জামান মাহিন",
+          age: "২২ বছর",
+          className: "ব্র্যাক ইউনিভার্সিটি (কম্পিউটার সায়েন্স)",
+          height: "৫ ফুট ৮ ইঞ্চি",
+          distance: "৪.৫ কিমি",
+          avatar: "🎧",
+          status: "অনলাইন • ভ্যালোরেন্ট গেমিংয়ে",
+          rejectionReasons: [
+            "আমি ভ্যালোরেন্ট ও ফিফা গেমের টুর্নামেন্ট খেলি! আপনি তো ক্লাচ মোমেন্টে ফোন দিয়ে 'আমায় মনে পড়ে না' বলে প্যাকপ্যাক করবেন! 🎮🕹️",
+            "আপনার মতো সুন্দরীর প্রপোজাল পেয়ে বুকটা কেঁপে উঠেছিল, কিন্তু বন্ধুদের দেখাতে বলল: 'ভাই তুই নির্ঘাত ফেক আইডির খপ্পরে পড়েছিস!' 😱😂"
+          ]
+        },
+        {
+          name: "মাহাদী হাসান তূর্য",
+          age: "২৫ বছর",
+          className: "বিসিএস এস্পায়ারেন্ট ও প্রভাষক",
+          height: "৫ ফুট ৯ ইঞ্চি",
+          distance: "৫.০ কিমি",
+          avatar: "📚",
+          status: "অনলাইন • লাইব্রেরিতে বিসিএস প্রস্তুতি",
+          rejectionReasons: [
+            "সামনে ৪৭তম বিসিএস প্রিলি পরীক্ষা! প্রেম করলে মুক্তিযুদ্ধ আর সাধারণ জ্ঞান মাথা থেকে ফুরুৎ হয়ে যাবে! ক্যাডার হওয়ার পর নক দিয়েন! 📖👔",
+            "আপনার নাম {name}, কিন্তু সংবিধানের কোনো ধারায় সিঙ্গেল আপুদের প্রপোজাল গ্রহণের কোনো আইন জারি নাই! 🏛️🤣"
+          ]
+        },
+        {
+          name: "জাওয়াদ করিম নির্ঝর",
+          age: "২৩ বছর",
+          className: "ক্যাফে ও রেস্টুরেন্ট ওনার",
+          height: "৫ ফুট ১০ ইঞ্চি",
+          distance: "৫.৫ কিমি",
+          avatar: "☕",
+          status: "অনলাইন • কোল্ড কফি বানাচ্ছে",
+          rejectionReasons: [
+            "আমার ক্যাফেতে আসলে ২০% ফ্ল্যাট ডিসকাউন্ট পাবেন আপু! কিন্তু মনের কেবিনে কোনো টেবিল বুকিং খালি নাই! ☕🍰",
+            "আপনার বয়স {age}, আর সিঙ্গেল থাকার কারণ বলছেন '{reason}'! মিষ্টি হাসির পেছনে ঝাল ঝাল ফুচকার মসলা লুকানো বুঝতে পারছি! 🌶️😂"
+          ]
+        },
+        {
+          name: "আরিয়ান খান কাব্য",
+          age: "২১ বছর",
+          className: "কবি ও পডকাস্টার",
+          height: "৫ ফুট ৯ ইঞ্চি",
+          distance: "৬.০ কিমি",
+          avatar: "🎙️",
+          status: "অনলাইন • গভীর রাতের পডকাস্ট রেকর্ডিং",
+          rejectionReasons: [
+            "আমার হৃদয় এখন শূন্য মরুভূমি! আপনার রূপের বৃষ্টিতে ভিজলে আমার জ্বর এসে সর্দিকাশি হয়ে যাবে! 🥀📜",
+            "আপনি আমার কবিতায় উপমা হতে পারেন, কিন্তু বাস্তবে এক ডজন শাড়ির আবদার মেটানোর মুরদ এই কবির নাই! 🍚😂"
+          ]
+        },
+        {
+          name: "মেহরাব হোসেন অনিক",
+          age: "২৪ বছর",
+          className: "কমার্শিয়াল পাইলট ট্রেইনি",
+          height: "৬ ফুট ১ ইঞ্চি",
+          distance: "৬.৭ কিমি",
+          avatar: "✈️",
+          status: "অনলাইন • ফ্লাইট সিমুলেটরে রানওয়েতে",
+          rejectionReasons: [
+            "আমি তো আকাশে মেঘের ওপর দিয়ে বিমান উড়িয়ে উড়ে বেড়াই! আপনি নিচে বসে বসে টিকটক ভিডিও বানিয়ে স্যাড স্ট্যাটাস দেবেন! 🛫☁️",
+            "সরি আপু, আপনার এটিটিউডের ওজন আমার বোয়িং ৭৩৭ বিমানের চেয়েও বেশি ভারী! ইমার্জেন্সি ল্যান্ডিং করতে বাধ্য হলাম! ✈️🚫"
+          ]
+        },
+        {
+          name: "সাব্বির আহমেদ শান্ত",
+          age: "২২ বছর",
+          className: "ফ্যাশন মডেল ও ইনফ্লুয়েন্সার",
+          height: "৫ ফুট ১১ ইঞ্চি",
+          distance: "৭.২ কিমি",
+          avatar: "🕶️",
+          status: "অনলাইন • ফ্যাশন উইকের ব্যাকস্টেজে",
+          rejectionReasons: [
+            "আমার চুলের হেয়ার জেল আর সানগ্লাসের দামের সমান আপনার পুরো সেমিস্টারের টিউশন ফি! এত চকচকে কিউট ছেলেকে সামলানো মুখের কথা না! 💅😎",
+            "আপনার চোখ সুন্দর হলেও ড্রেসিং কালার ম্যাচিং আমার মনের মতো হয়নি! আগে ফ্যাশন ম্যাগাজিন পড়ে আসুন! 👗🚫"
+          ]
+        },
+        {
+          name: "ইফতেখারুল ইসলাম জিসান",
+          age: "২৩ বছর",
+          className: "সিভিল ইঞ্জিনিয়ার (মেট্রোরেল প্রজেক্ট)",
+          height: "৫ ফুট ১০ ইঞ্চি",
+          distance: "৭.৮ কিমি",
+          avatar: "🏗️",
+          status: "অনলাইন • মেগা প্রজেক্ট সাইটে",
+          rejectionReasons: [
+            "রোদ আর সিমেন্টের ধুলায় সাইটে কাজ করে আমার শরীরের চামড়া তামা হয়ে গেছে! আপনি তো কোরিয়ান ড্রামার চকচকে হিরো খুঁজছেন! 👷‍♂️☀️",
+            "আপনি সিঙ্গেল কারণ: '{reason}'! আমার ইঞ্জিনিয়ারিং লেভেল মেশিনে এই প্রেমের পিলারের লোড ক্যাপাসিটি শূন্য! 📐🧱"
+          ]
+        },
+        {
+          name: "শায়ান কবির অর্ক",
+          age: "২০ বছর",
+          className: "রক ব্যান্ডের ড্রামার",
+          height: "৫ ফুট ৮ ইঞ্চি",
+          distance: "৮.৩ কিমি",
+          avatar: "🥁",
+          status: "অনলাইন • আন্ডারগ্রাউন্ড কনসার্টে",
+          rejectionReasons: [
+            "কনসার্টের ড্রামের প্রচণ্ড শব্দে আপনার ফিসফিস মিষ্টি প্রেমের কথা শুনতেই পাব না! প্রেমিক হতে গেলে তো দিনে দশবার ক্ষমা চাইতে হয়! 🥁🎸",
+            "সরি আপু, ব্যান্ডের বাকি মেম্বাররা নিয়ম করেছে: প্রেমে পড়ে ব্যান্ডের জামিং ফাঁকি দিলে ড্রামস্টিক দিয়ে পেটাতে হবে! 🤘😂"
+          ]
+        },
+        {
+          name: "ফাহিম ফয়সাল",
+          age: "২৩ বছর",
+          className: "ডিজিটাল মার্কেটার ও ড্রপশিপার",
+          height: "৫ ফুট ১০ ইঞ্চি",
+          distance: "৮.৯ কিমি",
+          avatar: "📱",
+          status: "অনলাইন • ফেসবুক মেটা ক্যাম্পেইনে",
+          rejectionReasons: [
+            "আমি ফেসবুক বিজ্ঞাপনে লাখ লাখ ক্লিক আনি, কিন্তু আপনার প্রেমের পেছনে কনভার্সন রেট ০.০১%! ইনভেস্টমেন্ট পুরোপুরি লস! 📊📉",
+            "আপনার প্রোফাইল অডিট করে দেখলাম: অতিরিক্ত মান-অভিমান আর গিফটের আবদার বাজেট অনেক বেশি! ক্যাম্পেইন রিজেক্টেড! 💸❌"
+          ]
+        },
+        {
+          name: "নাভিদ হাসান রাফি",
+          age: "২২ বছর",
+          className: "আইন অনুষদ ও সুপ্রিম কোর্ট শিক্ষানবিশ",
+          height: "৫ ফুট ৯ ইঞ্চি",
+          distance: "৯.৩ কিমি",
+          avatar: "⚖️",
+          status: "অনলাইন • দেওয়ানি মামলার ড্রাফটিংয়ে",
+          rejectionReasons: [
+            "আমার সাথে প্রেম করলে প্রতি কথায় যুক্তি দিয়ে তর্কে হারতে হবে! আপনি রাগ করে ফৌজদারি ধারায় মামলা ঠুকে দেবেন! ⚖️📜",
+            "আপনার প্রপোজাল পিটিশন কোর্ট পর্যালোচনা করে খারিজ করে দিয়েছে! কারণ আপনি সিঙ্গেল থাকার কারণ দিয়েছেন: '{reason}'! 🏛️🔨"
+          ]
+        },
+        {
+          name: "কামরুল হাসান বাপ্পি",
+          age: "২৪ বছর",
+          className: "অ্যাডভেঞ্চার ট্রাভেলার ও ক্যাম্পার",
+          height: "৫ ফুট ১১ ইঞ্চি",
+          distance: "৯.৮ কিমি",
+          avatar: "🧳",
+          status: "অনলাইন • সাজেক ভ্যালির রিমোট কটেজে",
+          rejectionReasons: [
+            "আমি প্রতি সপ্তাহে পাহাড়, ঝরনা আর গহীন জঙ্গলে একা একাকী হারিয়ে যাই! আপনি তো হাইকিং করতে গেলেই বলবেন পা ব্যথা করছে! 🏕️⛰️",
+            "সরি সুইটহার্ট! আমার ক্যাম্পিং ব্যাগে একজনেরই স্লিপিং ব্যাগের জায়গা হয়, আপনি এলে তাঁবু ভেঙে চুরমার হয়ে যাবে! 🎒😂"
+          ]
+        }
+      ];
+
+      // Hijra candidates list
+      const radarHijraList = [
+        {
+          name: "বিজলী রানী",
+          age: "২১ বছর",
+          className: "নৃত্যশিল্পী ও পারফর্মার",
+          height: "৫ ফুট ৬ ইঞ্চি",
+          distance: "১.৮ কিমি",
+          avatar: "💃",
+          status: "অনলাইন • নাচের স্টেজে",
+          rejectionReasons: [
+            "ভালোবাসার আসল সৌন্দর্য স্বাধীনতায়! সিঙ্গেল থেকেই দুনিয়া জয় করব, প্রেমের খাঁচায় বন্দী হব না! 🌈✨",
+            "আপনার হৃদয় খাঁটি, কিন্তু আমার মন এখন নিজের স্বপ্নের দিকে ধাবিত! বন্ধু হয়েই পাশে থাকুন! 💖"
+          ]
+        },
+        {
+          name: "কাজল রেখা",
+          age: "২৪ বছর",
+          className: "সামাজিক কর্মী ও উদ্যোক্তা",
+          height: "৫ ফুট ৭ ইঞ্চি",
+          distance: "৩.২ কিমি",
+          avatar: "✨",
+          status: "অনলাইন • এনজিও মিটিংয়ে",
+          rejectionReasons: [
+            "মিথ্যে প্রতিশ্রুতি আর মায়ার চেয়ে আত্মসম্মানে একাকী থাকাই পরম শান্তি! 🕊️👑",
+            "আপনার ভালোবাসার প্রস্তাবের জন্য সম্মান, তবে নিজের লক্ষ্য অর্জনে একাই হাঁটব বহুদূর! 🌈"
+          ]
+        }
+      ];
+
+      // ==========================================
+      // RADAR RENDERER FUNCTION (GENDER-AWARE)
+      // ==========================================
+      function renderRadarList(gender) {
+        if (!radarGirlsListView) return;
         radarGirlsListView.innerHTML = '';
-        radarGirlsList.forEach((girl, index) => {
+
+        let targetList = radarGirlsList;
+        if (gender === 'মহিলা') {
+          targetList = radarBoysList;
+        } else if (gender === 'হিজড়া') {
+          targetList = radarHijraList;
+        }
+
+        targetList.forEach((candidate, index) => {
           const card = document.createElement('div');
           card.className = 'radar-girl-card';
           card.innerHTML = `
             <div class="radar-girl-left">
-              <div class="radar-girl-avatar-wrap">${girl.avatar}</div>
+              <div class="radar-girl-avatar-wrap">${candidate.avatar}</div>
               <div class="radar-girl-info">
                 <div class="radar-girl-top">
-                  <span class="radar-girl-name">${girl.name}</span>
-                  <span class="radar-girl-distance">📍 ${girl.distance} দূরে</span>
+                  <span class="radar-girl-name">${candidate.name}</span>
+                  <span class="radar-girl-distance">📍 ${candidate.distance} দূরে</span>
                 </div>
                 <div class="radar-girl-meta">
-                  <span class="radar-girl-meta-tag">🎂 ${girl.age}</span>
-                  <span class="radar-girl-meta-tag">🎓 ${girl.className}</span>
-                  <span class="radar-girl-meta-tag">📏 ${girl.height}</span>
+                  <span class="radar-girl-meta-tag">🎂 ${candidate.age}</span>
+                  <span class="radar-girl-meta-tag">🎓 ${candidate.className}</span>
+                  <span class="radar-girl-meta-tag">📏 ${candidate.height}</span>
                 </div>
-                <div class="radar-girl-status">🟢 ${girl.status}</div>
+                <div class="radar-girl-status">🟢 ${candidate.status}</div>
               </div>
             </div>
             <button class="propose-btn-3d" data-index="${index}" type="button">
@@ -3706,49 +5081,57 @@
         proposeButtons.forEach(btn => {
           btn.addEventListener('click', (e) => {
             const idx = parseInt(btn.getAttribute('data-index'), 10);
-            handleProposeGirl(radarGirlsList[idx]);
+            handleProposeCandidate(targetList[idx]);
           });
         });
       }
+      const renderRadarGirls = () => renderRadarList(selectedGender || 'পুরুষ');
 
-      // Initial render
-      renderRadarGirls();
+      // Initial render based on selected gender
+      renderRadarList(selectedGender || 'পুরুষ');
 
-      // Open Radar Modal with 10km scan
+      // Open Radar Modal with 10km scan (Gender-Aware)
       scanCrushBtn.addEventListener('click', () => {
+        const isFemale = (selectedGender === 'মহিলা');
         playLaserBeep(650);
-        showToast('১০ কিলোমিটার এলাকার মধ্যে ক্রাশ স্ক্যান করা হচ্ছে...', '📡');
+        showToast(isFemale ? '১০ কিলোমিটার এলাকার মধ্যে হ্যান্ডসাম ক্রাশ বয় স্ক্যান করা হচ্ছে...' : '১০ কিলোমিটার এলাকার মধ্যে ক্রাশ স্ক্যান করা হচ্ছে...', '📡');
         scanCrushBtn.disabled = true;
         scanCrushBtn.innerHTML = '<span>১০ কিমি স্ক্যানিং চলছে... 🛰️</span>';
 
         setTimeout(() => {
           playTone(880, 'triangle', 0.25);
           scanCrushBtn.disabled = false;
-          scanCrushBtn.innerHTML = '<span>রাডার স্ক্যান চালু করুন 📡</span>';
+          scanCrushBtn.innerHTML = isFemale ? '<span>১০ কিমি ক্রাশ বয় স্ক্যান করুন 📡</span>' : '<span>রাডার স্ক্যান চালু করুন 📡</span>';
 
           // Reset views
           radarGirlsListView.style.display = 'flex';
           proposalLoadingView.style.display = 'none';
           proposalRejectView.style.display = 'none';
           if (radarModalTitle) {
-            radarModalTitle.innerHTML = '<span>🛰️</span><span>১০ কিমি পরিধির ক্রাশ রাডার</span>';
+            radarModalTitle.innerHTML = isFemale 
+              ? '<span>🛰️</span><span>১০ কিমি পরিধির হ্যান্ডসাম ক্রাশ রাডার</span>'
+              : '<span>🛰️</span><span>১০ কিমি পরিধির ক্রাশ রাডার</span>';
           }
           if (radarCountBadge) {
             radarCountBadge.style.display = 'inline-flex';
+            radarCountBadge.innerHTML = isFemale 
+              ? '<span style="display:inline-block; width:6px; height:6px; background:#00ff88; border-radius:50%; box-shadow:0 0 5px #00ff88;"></span> ২১ জন হ্যান্ডসাম ক্রাশ সক্রিয় ডিটেক্টেড'
+              : '<span style="display:inline-block; width:6px; height:6px; background:#00ff88; border-radius:50%; box-shadow:0 0 5px #00ff88;"></span> ১৮ জন ক্রাশ সক্রিয় ডিটেক্টেড';
           }
           closeCrushRadarBtn.title = 'বন্ধ করুন';
 
+          // Re-render radar list with current gender
+          renderRadarList(selectedGender);
+
           crushRadarModal.classList.add('show');
-          showToast('১০ কিমি পরিধির মধ্যে ১৮ জন ক্রাশ শনাক্ত হয়েছে! 🟢', '💘');
+          showToast(isFemale ? '১০ কিমি পরিধির মধ্যে ২১ জন হ্যান্ডসাম ক্রাশ বয় শনাক্ত হয়েছে! 🟢' : '১০ কিমি পরিধির মধ্যে ১৮ জন ক্রাশ শনাক্ত হয়েছে! 🟢', '💘');
         }, 1400);
       });
 
       // Close or Back Navigation:
-      // If user is inside girl's proposal/rejection view, clicking close (✕) returns to View 1 (18 girls list)
-      // Only when user is already on View 1 does clicking close (✕) close the entire modal.
       closeCrushRadarBtn.addEventListener('click', () => {
         if (proposalLoadingView.style.display === 'flex' || proposalRejectView.style.display === 'flex') {
-          backToGirlsList();
+          backToRadarList();
         } else {
           clearInterval(proposalProgressInterval);
           clearTimeout(proposalLoadingTimer);
@@ -3757,7 +5140,6 @@
       });
 
       // Stop outside backdrop touches from closing the modal
-      // Users requested it should only close when explicitly clicking the modal's buttons
       const radarModalBox = document.querySelector('.radar-modal-box');
       if (radarModalBox) {
         radarModalBox.addEventListener('click', (e) => {
@@ -3765,15 +5147,18 @@
         });
       }
 
-      // Propose Interaction with 4-5s loading
+      // Propose Interaction with 4-5s loading (Gender-Aware)
       let proposalLoadingTimer = null;
       let proposalProgressInterval = null;
 
-      function handleProposeGirl(girl) {
+      function handleProposeCandidate(candidate) {
+        const isFemale = (selectedGender === 'মহিলা');
+
         // Collect user information from Page 2
-        const uName = (userNameInput && userNameInput.value.trim()) ? userNameInput.value.trim() : 'সিঙ্গেল ভাই';
+        const defaultName = isFemale ? 'সিঙ্গেল আপু' : 'সিঙ্গেল ভাই';
+        const uName = (userNameInput && userNameInput.value.trim()) ? userNameInput.value.trim() : defaultName;
         const uAge = (userAgeInput && userAgeInput.value.trim()) ? userAgeInput.value.trim() : '২১';
-        const uReason = selectedReason || 'পকেটে টাকা নাই 😂';
+        const uReason = selectedReason || (isFemale ? 'যোগ্য মনের মতো ছেলে পাই না 🧐' : 'পকেটে টাকা নাই 😂');
 
         // Switch to Loading View
         radarGirlsListView.style.display = 'none';
@@ -3781,7 +5166,7 @@
         proposalLoadingView.style.display = 'flex';
 
         if (radarModalTitle) {
-          radarModalTitle.innerHTML = `<span>💌</span><span>${girl.name}-কে প্রপোজাল</span>`;
+          radarModalTitle.innerHTML = `<span>💌</span><span>${candidate.name}-কে প্রপোজাল</span>`;
         }
         if (radarCountBadge) {
           radarCountBadge.style.display = 'none';
@@ -3789,18 +5174,28 @@
         closeCrushRadarBtn.title = 'ক্রাশ তালিকায় ফিরুন';
 
         proposalUserName.textContent = uName;
-        proposalGirlName.textContent = girl.name;
+        proposalGirlName.textContent = candidate.name;
         proposalProgressFill.style.width = '0%';
 
         playTone(600, 'sine', 0.15);
 
-        // Status messages progression over 4.5 seconds
-        const statusSteps = [
-          `💌 ${uName} ➔ ${girl.name}-এর কাছে প্রস্তাব ও বায়োডাটা পাঠানো হচ্ছে...`,
-          `💘 ক্রাশের মন যাচাই ও সিঙ্গেল কোম্পানি এআই ম্যাচিং বিশ্লেষণ চলছে...`,
-          `🔍 মানিব্যাগের গভীরতা ও ফুচকা খাওয়ানোর আর্থিক সক্ষমতা স্ক্যান হচ্ছে...`,
-          `💬 ${girl.name} আপনার মেসেজ সিন করেছে এবং চোখ বড় করে টাইপ করছে...`
-        ];
+        // Status messages progression over 4.5 seconds (Gender-Aware)
+        let statusSteps = [];
+        if (isFemale) {
+          statusSteps = [
+            `💌 ${uName} ➔ ${candidate.name}-এর কাছে বিয়ের প্রস্তাব ও বায়োডাটা পাঠানো হচ্ছে...`,
+            `💘 হ্যান্ডসাম ক্রাশের মন যাচাই ও সিঙ্গেল কোম্পানি এআই ম্যাচিং বিশ্লেষণ চলছে...`,
+            `🔍 ছেলের চাকরি, বাইক ও ফুটানি মারার সক্ষমতা স্যাটেলাইটে স্ক্যান হচ্ছে...`,
+            `💬 ${candidate.name} আপনার মেসেজ সিন করেছে এবং চোখ কপালে তুলে টাইপ করছে...`
+          ];
+        } else {
+          statusSteps = [
+            `💌 ${uName} ➔ ${candidate.name}-এর কাছে প্রস্তাব ও বায়োডাটা পাঠানো হচ্ছে...`,
+            `💘 ক্রাশের মন যাচাই ও সিঙ্গেল কোম্পানি এআই ম্যাচিং বিশ্লেষণ চলছে...`,
+            `🔍 মানিব্যাগের গভীরতা ও ফুচকা খাওয়ানোর আর্থিক সক্ষমতা স্ক্যান হচ্ছে...`,
+            `💬 ${candidate.name} আপনার মেসেজ সিন করেছে এবং চোখ বড় করে টাইপ করছে...`
+          ];
+        }
 
         let stepIndex = 0;
         proposalLoadingStatus.textContent = statusSteps[0];
@@ -3838,16 +5233,19 @@
           setTimeout(playFunnyLaughSound, 500);
 
           // Select rejection reason and format with user's info
-          const randomReasonTemplate = girl.rejectionReasons[Math.floor(Math.random() * girl.rejectionReasons.length)];
+          const randomReasonTemplate = candidate.rejectionReasons[Math.floor(Math.random() * candidate.rejectionReasons.length)];
           const finalReason = randomReasonTemplate
             .replace(/{name}/g, uName)
             .replace(/{age}/g, uAge)
             .replace(/{reason}/g, uReason);
 
-          rejectGirlTarget.textContent = `টার্গেট ক্রাশ: ${girl.name} (${girl.distance} দূরে • ${girl.age} • ${girl.className})`;
+          rejectGirlTarget.textContent = isFemale 
+            ? `টার্গেট ক্রাশ বয়: ${candidate.name} (${candidate.distance} দূরে • ${candidate.age} • ${candidate.className})`
+            : `টার্গেট ক্রাশ: ${candidate.name} (${candidate.distance} দূরে • ${candidate.age} • ${candidate.className})`;
+
           rejectSpeechBubble.innerHTML = `
             <div style="font-weight: 800; color: #ff007a; margin-bottom: 6px; font-size: 13.5px;">
-              ${girl.avatar} ${girl.name} সরাসরি না বলে দিয়েছে:
+              ${candidate.avatar} ${candidate.name} সরাসরি রিজেক্ট করে বলল:
             </div>
             <div style="font-style: italic; color: #f8fafc;">
               "${finalReason}"
@@ -3855,17 +5253,18 @@
           `;
         }, 4500);
       }
+      const handleProposeGirl = handleProposeCandidate; // Backward compatibility alias
 
-      // Try another girl button (back to list)
+      // Try another candidate button (back to list)
       tryAnotherGirlBtn.addEventListener('click', () => {
-        backToGirlsList();
+        backToRadarList();
         showToast('অন্য কাউকে প্রপোজ করে চেষ্টা করুন 🔄', '💌');
       });
 
       // Cancel Proposal while loading button (back to list)
       if (cancelProposalLoadingBtn) {
         cancelProposalLoadingBtn.addEventListener('click', () => {
-          backToGirlsList();
+          backToRadarList();
           showToast('প্রস্তাব বাতিল করা হয়েছে! অন্য ক্রাশ বেছে নিন 🌸', '✨');
         });
       }
@@ -3873,7 +5272,7 @@
       // Close Rejection Modal button
       closeRejectModalBtn.addEventListener('click', () => {
         crushRadarModal.classList.remove('show');
-        showToast('সিঙ্গেল থাকাই পরম সুখ! শান্তি বজায় থাকুক 🗿', '✨');
+        showToast(selectedGender === 'মহিলা' ? 'সিঙ্গেল কুইন হিসেবেই শ্রেষ্ঠ! শান্তি বজায় থাকুক 👑' : 'সিঙ্গেল থাকাই পরম সুখ! শান্তি বজায় থাকুক 🗿', '✨');
       });
 
       // Developer Facebook Profile Button Click
@@ -3893,7 +5292,7 @@
           showToast('👑 ক্রিয়েটর ও ডিজাইনার M D Jihadul Islam Sojib-কে স্যালুট! 🔥', '👑');
           showModal(
             'প্রধান আর্কিটেক্ট ও ডেভেলপার',
-            '👑 Welcome Back To Single Company এর ডিজাইনার ও কারিগর:\n\n✨ M D Jihadul Islam Sojib ✨\n\nঅসাধারণ আধুনিক নিয়ন ও সাইবারপাঙ্ক লুক উপহার দেওয়ার জন্য সিঙ্গেল কোম্পানির পক্ষ থেকে লাল গোলাপ শুভেচ্ছা ও সম্মান! 🌹💻',
+            '👑 Welcome Back To Single Company Ltd এর ডিজাইনার ও কারিগর:\n\n✨ M D Jihadul Islam Sojib ✨\n\nঅসাধারণ আধুনিক নিয়ন ও সাইবারপাঙ্ক লুক উপহার দেওয়ার জন্য সিঙ্গেল কোম্পানি লিমিটেড-এর পক্ষ থেকে লাল গোলাপ শুভেচ্ছা ও সম্মান! 🌹💻',
             '👑✨',
             'স্যালুট রইল বস! 🫡'
           );
@@ -3913,11 +5312,11 @@
       // Share with Friends
       const sharePrankBtn = document.getElementById('sharePrankBtn');
       sharePrankBtn.addEventListener('click', () => {
-        const textToShare = `🚨 আমি অফিসিয়ালি Welcome Back To Single Company থেকে ১০০% খাঁটি সিঙ্গেল সার্টিফিকেট ও মেম্বারশিপ পেয়েছি! কারণ: "${selectedReason}". তুমিও চেক করো 😂`;
+        const textToShare = `🚨 আমি অফিসিয়ালি Welcome Back To Single Company Ltd থেকে ১০০% খাঁটি সিঙ্গেল সার্টিফিকেট ও মেম্বারশিপ পেয়েছি! কারণ: "${selectedReason}". তুমিও চেক করো 😂`;
         
         if (navigator.share) {
           navigator.share({
-            title: 'Welcome Back To Single Company',
+            title: 'Welcome Back To Single Company Ltd',
             text: textToShare,
             url: window.location.href,
           }).catch(() => {});
@@ -3935,9 +5334,37 @@
       const resetAppBtn = document.getElementById('resetAppBtn');
       resetAppBtn.addEventListener('click', () => {
         userNameInput.value = '';
+        userAgeInput.value = '';
+        selectedWife = null;
+        selectedGf = null;
+        selectedGender = null;
+        selectedReason = null;
+        uploadedPhotoData = null;
+        isPhotoSkipped = false;
+        if (userPhotoInput) userPhotoInput.value = '';
+        if (photoPreviewImg) {
+          photoPreviewImg.src = '';
+          photoPreviewImg.style.display = 'none';
+        }
+        if (photoPlaceholder) photoPlaceholder.style.display = 'flex';
+        if (photoClearBtn) photoClearBtn.style.display = 'none';
+        if (photoUploadBox) photoUploadBox.classList.remove('has-photo', 'is-skipped');
+        if (skipPhotoContainer) skipPhotoContainer.classList.remove('checked');
+        if (skipPhotoCheck) skipPhotoCheck.checked = false;
+        wifeYesBtn.classList.remove('selected');
+        wifeNoBtn.classList.remove('selected');
+        if (wifeStatusTag) wifeStatusTag.style.display = 'none';
+        gfYesBtn.classList.remove('selected');
+        gfNoBtn.classList.remove('selected');
+        if (gfStatusTag) gfStatusTag.style.display = 'none';
+        genderCards.forEach(c => c.classList.remove('selected'));
+        applyGenderTheme('পুরুষ', true);
         goToPage(1);
         showToast('লগআউট সফল! আবার স্বাগতম!', '🔄');
       });
+
+      // Initialize default theme (Male)
+      applyGenderTheme('পুরুষ', true);
 
     })();
   </script>
