@@ -2157,6 +2157,273 @@
       .top-bar, .wa-promo-box, .wallet-section, .radar-box, .btn-3d, .app-footer { display: none !important; }
       .single-id-card { border: 2px solid #000; }
     }
+
+    /* ========================================== */
+    /* SOCIAL MEDIA STYLE PHOTO CROP MODAL        */
+    /* ========================================== */
+    .crop-modal-box {
+      width: 100%;
+      max-width: 410px;
+      background: #090e1a;
+      border: 1.5px solid var(--cyan);
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.35), 0 20px 50px rgba(0, 0, 0, 0.95);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.92);
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+    .modal-backdrop.show .crop-modal-box {
+      transform: scale(1);
+    }
+    .crop-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: rgba(14, 20, 36, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .crop-header-btn {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 12.5px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .crop-cancel-btn {
+      background: rgba(255, 255, 255, 0.09);
+      color: #94a3b8;
+    }
+    .crop-cancel-btn:hover {
+      background: rgba(255, 0, 122, 0.25);
+      color: #fff;
+    }
+    .crop-modal-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.3px;
+    }
+    .crop-done-btn {
+      background: linear-gradient(135deg, #00f0ff 0%, #0284c7 100%);
+      color: #040814;
+      font-weight: 900;
+      box-shadow: 0 0 14px rgba(0, 240, 255, 0.45);
+    }
+    .crop-done-btn:hover {
+      filter: brightness(1.15);
+      box-shadow: 0 0 18px rgba(0, 240, 255, 0.65);
+      transform: scale(1.02);
+    }
+
+    /* Crop Viewport & Stage */
+    .crop-stage-container {
+      background: #03060f;
+      padding: 18px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      overflow: hidden;
+    }
+    .crop-viewport {
+      width: 260px;
+      height: 260px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #00f0ff;
+      border-radius: 12px;
+      box-shadow: 0 0 0 9999px rgba(3, 7, 18, 0.82), 0 0 20px rgba(0, 240, 255, 0.4);
+      cursor: grab;
+      touch-action: none;
+      background: #000;
+      transition: border-radius 0.25s ease;
+    }
+    .crop-viewport:active {
+      cursor: grabbing;
+    }
+    .crop-viewport.is-circle {
+      border-radius: 50%;
+    }
+    .crop-target-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center center;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      max-width: none;
+      will-change: transform;
+    }
+
+    /* 3x3 Grid Overlay */
+    .crop-grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      opacity: 0.65;
+      transition: opacity 0.2s ease;
+    }
+    .crop-viewport:active .crop-grid-overlay {
+      opacity: 0.95;
+    }
+    .crop-grid-cell {
+      border-right: 1px dashed rgba(255, 255, 255, 0.28);
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.28);
+    }
+    .crop-grid-cell:nth-child(3n) {
+      border-right: none;
+    }
+    .crop-grid-cell:nth-child(n+7) {
+      border-bottom: none;
+    }
+
+    /* Corner handles */
+    .crop-corner-bracket {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 3px solid #00f0ff;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .crop-corner-tl { top: -2px; left: -2px; border-right: none; border-bottom: none; border-top-left-radius: 6px; }
+    .crop-corner-tr { top: -2px; right: -2px; border-left: none; border-bottom: none; border-top-right-radius: 6px; }
+    .crop-corner-bl { bottom: -2px; left: -2px; border-right: none; border-top: none; border-bottom-left-radius: 6px; }
+    .crop-corner-br { bottom: -2px; right: -2px; border-left: none; border-top: none; border-bottom-right-radius: 6px; }
+
+    .crop-hint-banner {
+      font-size: 11.5px;
+      color: #94a3b8;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .crop-hint-banner span {
+      color: var(--cyan);
+    }
+
+    /* Controls Bar */
+    .crop-controls-wrapper {
+      padding: 12px 16px 15px 16px;
+      background: rgba(14, 20, 36, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .crop-slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .crop-tool-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      padding: 5px 9px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .crop-tool-btn:hover {
+      background: rgba(0, 240, 255, 0.2);
+      color: #fff;
+      border-color: var(--cyan);
+    }
+    .crop-slider-track-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    .crop-range-slider {
+      width: 100%;
+      height: 6px;
+      accent-color: var(--cyan);
+      cursor: pointer;
+      border-radius: 999px;
+    }
+    .crop-actions-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .crop-action-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      padding: 7px 6px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .crop-action-btn:hover {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.4);
+      color: #fff;
+    }
+    .crop-action-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* Small reopen crop badge on photo preview box */
+    .photo-action-badge-btn {
+      position: absolute;
+      bottom: -6px;
+      left: -6px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #0ea5e9;
+      color: #fff;
+      border: 1.5px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+      z-index: 4;
+      transition: all 0.2s ease;
+    }
+    .photo-action-badge-btn:hover {
+      transform: scale(1.15);
+      background: #0284c7;
+    }
   </style>
 </head>
 <body>
@@ -2312,6 +2579,7 @@
                     <span class="photo-placeholder-text">ছবি দিন</span>
                   </div>
                   <img id="photoPreviewImg" src="" alt="Profile Photo" class="photo-preview-img" style="display: none;" />
+                  <button type="button" class="photo-action-badge-btn" id="photoCropReopenBtn" style="display: none;" title="ছবি পুনরায় ক্রপ বা অ্যাডজাস্ট করুন">✂️</button>
                   <button type="button" class="photo-remove-btn" id="photoClearBtn" title="ছবি সরান">✕</button>
                 </div>
               </div>
@@ -2893,6 +3161,80 @@
   </div>
 
   <!-- ========================================== -->
+  <!-- PHOTO CROP MODAL (Social Media Style)      -->
+  <!-- ========================================== -->
+  <div id="photoCropModal" class="modal-backdrop">
+    <div class="crop-modal-box">
+      <!-- Header -->
+      <div class="crop-modal-header">
+        <button type="button" id="cropCancelBtn" class="crop-header-btn crop-cancel-btn">
+          <span>✕ বাতিল</span>
+        </button>
+        <div class="crop-modal-title">
+          <span>✂️ ছবি সাইজ ও ক্রপ করুন</span>
+        </div>
+        <button type="button" id="cropConfirmBtn" class="crop-header-btn crop-done-btn">
+          <span>✓ সম্পন্ন</span>
+        </button>
+      </div>
+
+      <!-- Interactive Crop Stage -->
+      <div class="crop-stage-container" id="cropStageContainer">
+        <div class="crop-viewport" id="cropViewport" title="আঙুল বা মাউস দিয়ে ড্র্যাগ করে সঠিক পজিশন করুন">
+          <img id="cropTargetImage" class="crop-target-image" src="" alt="Crop Target" draggable="false" />
+          
+          <!-- 3x3 Rule of Thirds Grid Overlay -->
+          <div class="crop-grid-overlay">
+            <div class="crop-grid-cell"></div>
+            <div class="crop-grid-cell"></div>
+            <div class="crop-grid-cell"></div>
+            <div class="crop-grid-cell"></div>
+            <div class="crop-grid-cell"></div>
+            <div class="crop-grid-cell"></div>
+            <div class="crop-grid-cell"></div>
+            <div class="crop-grid-cell"></div>
+            <div class="crop-grid-cell"></div>
+          </div>
+
+          <!-- Corner Brackets -->
+          <div class="crop-corner-bracket crop-corner-tl"></div>
+          <div class="crop-corner-bracket crop-corner-tr"></div>
+          <div class="crop-corner-bracket crop-corner-bl"></div>
+          <div class="crop-corner-bracket crop-corner-br"></div>
+        </div>
+
+        <div class="crop-hint-banner">
+          <span>👆 ড্র্যাগ</span> করে পজিশন করুন এবং <span>জুম</span> অ্যাডজাস্ট করুন
+        </div>
+      </div>
+
+      <!-- Controls & Actions -->
+      <div class="crop-controls-wrapper">
+        <div class="crop-slider-row">
+          <button type="button" class="crop-tool-btn" id="cropZoomOutBtn" title="জুম আউট">🔍−</button>
+          <div class="crop-slider-track-wrap">
+            <input type="range" id="cropZoomRange" min="1" max="3" step="0.05" value="1" class="crop-range-slider" title="জুম লেভেল পরিবর্তন করুন" />
+          </div>
+          <button type="button" class="crop-tool-btn" id="cropZoomInBtn" title="জুম ইন">🔍+</button>
+        </div>
+
+        <div class="crop-actions-bar">
+          <button type="button" class="crop-action-btn" id="cropRotateBtn" title="ছবি ৯০ ডিগ্রি ঘুরান">
+            <span>🔄 ৯০° ঘুরান</span>
+          </button>
+          <button type="button" class="crop-action-btn" id="cropResetBtn" title="আগের সাইজে রিসেট করুন">
+            <span>↺ রিসেট</span>
+          </button>
+          <button type="button" class="crop-action-btn" id="cropShapeToggleBtn" title="স্কয়ার বা বৃত্তাকার প্রিভিউ পরিবর্তন করুন">
+            <span id="cropShapeIcon">⚪</span>
+            <span id="cropShapeText">বৃত্ত ভিউ</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
   <!-- MODAL POPUPS (Triggered by prank events)    -->
   <!-- ========================================== -->
   <div id="funnyModal" class="modal-backdrop">
@@ -3310,17 +3652,147 @@
       const reasonItems = document.querySelectorAll('.reason-item');
       const submitInfoBtn = document.getElementById('submitInfoBtn');
 
-      // Picture Upload & Skip Setup
+      // Picture Upload, Crop Modal & Skip Setup
       const photoUploadBox = document.getElementById('photoUploadBox');
       const userPhotoInput = document.getElementById('userPhotoInput');
       const photoPlaceholder = document.getElementById('photoPlaceholder');
       const photoPreviewImg = document.getElementById('photoPreviewImg');
       const photoClearBtn = document.getElementById('photoClearBtn');
+      const photoCropReopenBtn = document.getElementById('photoCropReopenBtn');
       const skipPhotoContainer = document.getElementById('skipPhotoContainer');
       const skipPhotoCheck = document.getElementById('skipPhotoCheck');
 
+      // Crop Modal Elements
+      const photoCropModal = document.getElementById('photoCropModal');
+      const cropCancelBtn = document.getElementById('cropCancelBtn');
+      const cropConfirmBtn = document.getElementById('cropConfirmBtn');
+      const cropViewport = document.getElementById('cropViewport');
+      const cropTargetImage = document.getElementById('cropTargetImage');
+      const cropZoomRange = document.getElementById('cropZoomRange');
+      const cropZoomOutBtn = document.getElementById('cropZoomOutBtn');
+      const cropZoomInBtn = document.getElementById('cropZoomInBtn');
+      const cropRotateBtn = document.getElementById('cropRotateBtn');
+      const cropResetBtn = document.getElementById('cropResetBtn');
+      const cropShapeToggleBtn = document.getElementById('cropShapeToggleBtn');
+      const cropShapeIcon = document.getElementById('cropShapeIcon');
+      const cropShapeText = document.getElementById('cropShapeText');
+
       let uploadedPhotoData = null;
+      let originalRawDataUrl = null;
       let isPhotoSkipped = false;
+
+      // Crop State
+      const CROP_VIEWPORT_SIZE = 260;
+      let activeRawImage = null;
+      let cropZoom = 1;
+      let cropRotate = 0;
+      let cropPanX = 0;
+      let cropPanY = 0;
+      let isDraggingCrop = false;
+      let startPointerX = 0;
+      let startPointerY = 0;
+      let startPanX = 0;
+      let startPanY = 0;
+      let isCircleCropView = false;
+
+      function updateCropDisplay() {
+        if (!activeRawImage || !cropTargetImage) return;
+
+        const isRotated90or270 = (cropRotate === 90 || cropRotate === 270);
+        const effectiveW = isRotated90or270 ? activeRawImage.naturalHeight : activeRawImage.naturalWidth;
+        const effectiveH = isRotated90or270 ? activeRawImage.naturalWidth : activeRawImage.naturalHeight;
+
+        // Base scale so image fills the 260x260 viewport at zoom = 1
+        const baseScale = Math.max(CROP_VIEWPORT_SIZE / effectiveW, CROP_VIEWPORT_SIZE / effectiveH);
+
+        const currentW = effectiveW * baseScale * cropZoom;
+        const currentH = effectiveH * baseScale * cropZoom;
+        const maxPanX = Math.max(0, (currentW - CROP_VIEWPORT_SIZE) / 2);
+        const maxPanY = Math.max(0, (currentH - CROP_VIEWPORT_SIZE) / 2);
+
+        // Clamp pan so image stays inside crop zone
+        cropPanX = Math.max(-maxPanX, Math.min(maxPanX, cropPanX));
+        cropPanY = Math.max(-maxPanY, Math.min(maxPanY, cropPanY));
+
+        cropTargetImage.style.width = `${activeRawImage.naturalWidth * baseScale}px`;
+        cropTargetImage.style.height = `${activeRawImage.naturalHeight * baseScale}px`;
+        cropTargetImage.style.transform = `translate(calc(-50% + ${cropPanX}px), calc(-50% + ${cropPanY}px)) rotate(${cropRotate}deg) scale(${cropZoom})`;
+
+        if (cropZoomRange) {
+          cropZoomRange.value = cropZoom;
+        }
+      }
+
+      function initiatePhotoCrop(dataUrl) {
+        originalRawDataUrl = dataUrl;
+        const img = new Image();
+        img.onload = () => {
+          activeRawImage = img;
+          cropTargetImage.src = dataUrl;
+          cropZoom = 1;
+          cropRotate = 0;
+          cropPanX = 0;
+          cropPanY = 0;
+          updateCropDisplay();
+          photoCropModal.classList.add('show');
+          playTone(680, 'sine', 0.1);
+          showToast('সোশ্যাল মিডিয়ার মতো আঙুল দিয়ে ক্রপ ও সাইজ করুন ✂️', '🖼️');
+        };
+        img.onerror = () => {
+          playBuzzSound();
+          showToast('ছবি রিড করতে সমস্যা হয়েছে! অন্য ছবি বেছে নিন', '⚠️');
+        };
+        img.src = dataUrl;
+      }
+
+      function confirmPhotoCrop() {
+        if (!activeRawImage) return;
+
+        const CANVAS_SIZE = 400; // 400x400 high-res avatar
+        const canvas = document.createElement('canvas');
+        canvas.width = CANVAS_SIZE;
+        canvas.height = CANVAS_SIZE;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        // Clean dark base
+        ctx.fillStyle = '#0a0f1d';
+        ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+
+        const isRotated90or270 = (cropRotate === 90 || cropRotate === 270);
+        const effectiveW = isRotated90or270 ? activeRawImage.naturalHeight : activeRawImage.naturalWidth;
+        const effectiveH = isRotated90or270 ? activeRawImage.naturalWidth : activeRawImage.naturalHeight;
+
+        const baseScale = Math.max(CROP_VIEWPORT_SIZE / effectiveW, CROP_VIEWPORT_SIZE / effectiveH);
+        const scaleRatio = CANVAS_SIZE / CROP_VIEWPORT_SIZE;
+
+        ctx.save();
+        // Translate to center + pan offset scaled to canvas
+        ctx.translate(CANVAS_SIZE / 2 + cropPanX * scaleRatio, CANVAS_SIZE / 2 + cropPanY * scaleRatio);
+        ctx.rotate((cropRotate * Math.PI) / 180);
+
+        const drawW = activeRawImage.naturalWidth * baseScale * cropZoom * scaleRatio;
+        const drawH = activeRawImage.naturalHeight * baseScale * cropZoom * scaleRatio;
+
+        ctx.drawImage(activeRawImage, -drawW / 2, -drawH / 2, drawW, drawH);
+        ctx.restore();
+
+        const croppedDataUrl = canvas.toDataURL('image/jpeg', 0.92);
+        uploadedPhotoData = croppedDataUrl;
+
+        photoPreviewImg.src = uploadedPhotoData;
+        photoPreviewImg.style.display = 'block';
+        photoPlaceholder.style.display = 'none';
+        photoClearBtn.style.display = 'flex';
+        if (photoCropReopenBtn) photoCropReopenBtn.style.display = 'flex';
+        photoUploadBox.classList.add('has-photo');
+        photoUploadBox.classList.remove('is-skipped');
+        setPhotoSkippedState(false, false);
+
+        photoCropModal.classList.remove('show');
+        playSuccessChime();
+        showToast('ছবি নিখুঁতভাবে ক্রপ ও সেভ করা হয়েছে! ✂️📸', '✅');
+      }
 
       function setPhotoSkippedState(skipped, notify = true) {
         isPhotoSkipped = skipped;
@@ -3343,7 +3815,11 @@
 
       // Click photo box to trigger file selection
       if (photoUploadBox && userPhotoInput) {
-        photoUploadBox.addEventListener('click', () => {
+        photoUploadBox.addEventListener('click', (e) => {
+          // If clicked the remove or re-crop buttons, do not trigger file picker
+          if (e.target.closest('#photoClearBtn') || e.target.closest('#photoCropReopenBtn')) {
+            return;
+          }
           userPhotoInput.click();
         });
 
@@ -3357,35 +3833,42 @@
           }
           const reader = new FileReader();
           reader.onload = (event) => {
-            uploadedPhotoData = event.target.result;
-            photoPreviewImg.src = uploadedPhotoData;
-            photoPreviewImg.style.display = 'block';
-            photoPlaceholder.style.display = 'none';
-            photoClearBtn.style.display = 'flex';
-            photoUploadBox.classList.add('has-photo');
-            photoUploadBox.classList.remove('is-skipped');
-            setPhotoSkippedState(false, false);
-            playSuccessChime();
-            showToast('প্রোফাইল ছবি সফলভাবে যুক্ত হয়েছে! 📸✨', '✅');
+            initiatePhotoCrop(event.target.result);
           };
           reader.readAsDataURL(file);
         });
+
+        // Re-open crop modal button
+        if (photoCropReopenBtn) {
+          photoCropReopenBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (originalRawDataUrl) {
+              initiatePhotoCrop(originalRawDataUrl);
+            } else if (uploadedPhotoData) {
+              initiatePhotoCrop(uploadedPhotoData);
+            } else {
+              userPhotoInput.click();
+            }
+          });
+        }
 
         // Remove photo button
         photoClearBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           uploadedPhotoData = null;
+          originalRawDataUrl = null;
           userPhotoInput.value = '';
           photoPreviewImg.src = '';
           photoPreviewImg.style.display = 'none';
           photoPlaceholder.style.display = 'flex';
           photoClearBtn.style.display = 'none';
+          if (photoCropReopenBtn) photoCropReopenBtn.style.display = 'none';
           photoUploadBox.classList.remove('has-photo');
           playCartoonBuzz();
           showToast('ছবি সরানো হয়েছে!', '🗑️');
         });
 
-        // Drag & Drop
+        // Drag & Drop to Upload & Crop
         photoUploadBox.addEventListener('dragover', (e) => {
           e.preventDefault();
           photoUploadBox.style.borderColor = 'var(--cyan)';
@@ -3403,22 +3886,153 @@
           if (file && file.type.startsWith('image/')) {
             const reader = new FileReader();
             reader.onload = (event) => {
-              uploadedPhotoData = event.target.result;
-              photoPreviewImg.src = uploadedPhotoData;
-              photoPreviewImg.style.display = 'block';
-              photoPlaceholder.style.display = 'none';
-              photoClearBtn.style.display = 'flex';
-              photoUploadBox.classList.add('has-photo');
-              photoUploadBox.classList.remove('is-skipped');
-              setPhotoSkippedState(false, false);
-              playSuccessChime();
-              showToast('প্রোফাইল ছবি সফলভাবে যুক্ত হয়েছে! 📸✨', '✅');
+              initiatePhotoCrop(event.target.result);
             };
             reader.readAsDataURL(file);
           } else {
             playBuzzSound();
             showToast('দয়া করে শুধুমাত্র ছবি ফাইল ড্রপ করুন!', '⚠️');
           }
+        });
+      }
+
+      // Crop Modal Action Listeners
+      if (cropConfirmBtn) {
+        cropConfirmBtn.addEventListener('click', confirmPhotoCrop);
+      }
+
+      if (cropCancelBtn) {
+        cropCancelBtn.addEventListener('click', () => {
+          photoCropModal.classList.remove('show');
+          if (!uploadedPhotoData) {
+            userPhotoInput.value = '';
+          }
+          playTone(400, 'sine', 0.08);
+          showToast('ছবি ক্রপ বাতিল করা হয়েছে', 'ℹ️');
+        });
+      }
+
+      if (photoCropModal) {
+        photoCropModal.addEventListener('click', (e) => {
+          if (e.target === photoCropModal) {
+            photoCropModal.classList.remove('show');
+            if (!uploadedPhotoData) {
+              userPhotoInput.value = '';
+            }
+          }
+        });
+      }
+
+      // Viewport Mouse Dragging
+      if (cropViewport) {
+        cropViewport.addEventListener('mousedown', (e) => {
+          e.preventDefault();
+          isDraggingCrop = true;
+          startPointerX = e.clientX;
+          startPointerY = e.clientY;
+          startPanX = cropPanX;
+          startPanY = cropPanY;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+          if (!isDraggingCrop) return;
+          cropPanX = startPanX + (e.clientX - startPointerX);
+          cropPanY = startPanY + (e.clientY - startPointerY);
+          updateCropDisplay();
+        });
+
+        window.addEventListener('mouseup', () => {
+          isDraggingCrop = false;
+        });
+
+        // Viewport Touch Dragging
+        cropViewport.addEventListener('touchstart', (e) => {
+          if (e.touches && e.touches.length === 1) {
+            isDraggingCrop = true;
+            startPointerX = e.touches[0].clientX;
+            startPointerY = e.touches[0].clientY;
+            startPanX = cropPanX;
+            startPanY = cropPanY;
+          }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+          if (!isDraggingCrop || !e.touches || e.touches.length !== 1) return;
+          cropPanX = startPanX + (e.touches[0].clientX - startPointerX);
+          cropPanY = startPanY + (e.touches[0].clientY - startPointerY);
+          updateCropDisplay();
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+          isDraggingCrop = false;
+        });
+        window.addEventListener('touchcancel', () => {
+          isDraggingCrop = false;
+        });
+
+        // Mouse Wheel Zoom
+        cropViewport.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          const delta = e.deltaY < 0 ? 0.1 : -0.1;
+          cropZoom = Math.max(1, Math.min(3, Math.round((cropZoom + delta) * 100) / 100));
+          updateCropDisplay();
+        }, { passive: false });
+      }
+
+      // Zoom Controls
+      if (cropZoomRange) {
+        cropZoomRange.addEventListener('input', (e) => {
+          cropZoom = parseFloat(e.target.value);
+          updateCropDisplay();
+        });
+      }
+      if (cropZoomInBtn) {
+        cropZoomInBtn.addEventListener('click', () => {
+          cropZoom = Math.min(3, Math.round((cropZoom + 0.2) * 100) / 100);
+          updateCropDisplay();
+          playTone(600, 'triangle', 0.05);
+        });
+      }
+      if (cropZoomOutBtn) {
+        cropZoomOutBtn.addEventListener('click', () => {
+          cropZoom = Math.max(1, Math.round((cropZoom - 0.2) * 100) / 100);
+          updateCropDisplay();
+          playTone(480, 'triangle', 0.05);
+        });
+      }
+
+      // Rotate Button
+      if (cropRotateBtn) {
+        cropRotateBtn.addEventListener('click', () => {
+          cropRotate = (cropRotate + 90) % 360;
+          updateCropDisplay();
+          playTone(550, 'triangle', 0.08);
+        });
+      }
+
+      // Reset Button
+      if (cropResetBtn) {
+        cropResetBtn.addEventListener('click', () => {
+          cropZoom = 1;
+          cropRotate = 0;
+          cropPanX = 0;
+          cropPanY = 0;
+          updateCropDisplay();
+          playTone(420, 'sine', 0.08);
+          showToast('সাইজ ও পজিশন রিসেট হয়েছে ↺', '👌');
+        });
+      }
+
+      // Shape Toggle Button (Circle / Square Preview)
+      if (cropShapeToggleBtn) {
+        cropShapeToggleBtn.addEventListener('click', () => {
+          isCircleCropView = !isCircleCropView;
+          cropViewport.classList.toggle('is-circle', isCircleCropView);
+          if (cropShapeIcon && cropShapeText) {
+            cropShapeIcon.textContent = isCircleCropView ? '🔲' : '⚪';
+            cropShapeText.textContent = isCircleCropView ? 'স্কয়ার ভিউ' : 'বৃত্ত ভিউ';
+          }
+          playTone(650, 'sine', 0.08);
         });
       }
 
